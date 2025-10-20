@@ -1,0 +1,25 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a environment input to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD RIVER FLOW: ----------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_components/includes/bc/5_phe
+
+!# PEEL-HARVEY RIVER BOUNDARY : interpolated from raw WIR dataset 
+!#
+!# Headers in file: Date,Flow,SAL,TEMP,TSS,OXY,AMM,NIT,FRP,DOC_T,POC_T,DON_T,PON_T,OP,CHLA,TN,TP,ONES,ZEROS
+!#
+bc == QC, 115.6287, -32.5980, ../../../environment_repo/5_phe/CSV/PeelHarvey_Inflow_1970_01_01-2024_10_29.csv
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,ONES,ONES,ZEROS
+ bc scale ==         1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,0.15,0.015,1,0.15,0.015,1,0.15,0.015,1,0.15,0.015,5,4,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end BC
+

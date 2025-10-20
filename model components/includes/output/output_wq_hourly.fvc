@@ -1,0 +1,18 @@
+!output dir == ../../../output_archive/results
+
+output == netcdf
+  output parameters  == h,d,v,w,sal,temp,rhow
+  output interval    == 3600
+  output compression == 1
+end output 
+
+output == netcdf
+  suffix             == WQ
+  output parameters  == h,d,v,w,sal,temp,wq_all,wq_diag_all
+  output interval    == 3600
+  output compression == 1
+end output
+
+output == flux
+  output interval    == 1800
+end output

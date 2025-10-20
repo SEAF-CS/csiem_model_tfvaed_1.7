@@ -1,0 +1,75 @@
+! Spatial Order set to 1st order with spatial reconstruction == 0
+material == 1 ! Default, and Deep Water
+ bottom roughness == 0.02
+ spatial reconstruction == 0
+end material 
+
+material == 16 ! Swan
+ bottom roughness == 0.02
+ spatial reconstruction == 1
+end material
+
+material == 21 ! CS GS 1
+ bottom roughness == 0.002
+ spatial reconstruction == 1
+end material
+
+material == 22 ! Banks and Artificial structures
+ bottom roughness == 0.001
+ spatial reconstruction == 1
+end material
+
+material == 23 ! Sea grass
+ bottom roughness == 0.0015
+ spatial reconstruction == 1
+end material
+
+material == 24 ! Patchy seagrass
+ bottom roughness == 0.005
+ spatial reconstruction == 1
+end material
+
+material == 25 ! Patchy seagrass
+ bottom roughness == 0.01
+ spatial reconstruction == 1
+end material
+
+material == 26 ! Patchy seagrass
+ bottom roughness == 0.015
+ spatial reconstruction == 1
+end material
+
+material == 27! Patchy seagrass
+ bottom roughness == 0.02
+ spatial reconstruction == 1
+end material
+
+material == 61 ! soft substrate sand
+ bottom roughness == 0.03
+ spatial reconstruction == 1
+end material
+
+material == 68 ! hard substrate reef
+ bottom roughness == 0.1
+ spatial reconstruction == 1
+end material
+
+material == 70 ! mix substrate
+ bottom roughness == 0.05
+ spatial reconstruction == 1
+end material
+
+material == 59 ! artificial structure
+ bottom roughness == 0.08
+ spatial reconstruction == 1
+end material
+
+material == 60 ! seagrass swan river
+ bottom roughness == 0.1
+ spatial reconstruction == 1
+end material
+
+material == 66 ! seagrass Perennial
+ bottom roughness == 0.1
+ spatial reconstruction == 1
+end material

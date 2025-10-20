@@ -1,0 +1,68 @@
+! TUFLOW-FV configuration file for wrf Atmospheric Dataset for Perth (PH) region
+! NOTE: it is important to set a fine update dt for WRF due to a time lag for 
+!       coupling the WRF into TFV
+
+grid definition file == ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  grid definition variables == longitude, latitude
+  grid definition label == wrf
+end grid
+
+bc == MSLP_GRID, wrf, ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  bc header == local_time, PSFC
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 0.01
+end bc
+
+bc == LW_RAD_GRID, wrf, ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  bc header == local_time, GLW
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+
+bc == SW_RAD_GRID, wrf, ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  bc header == local_time, SWDOWN
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+
+bc == AIR_TEMP_GRID, wrf, ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  bc header == local_time, T2
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc offset == 0.0
+end bc
+
+bc == W10_GRID, wrf, ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  bc header == local_time, U10, V10
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+
+bc == PRECIP_GRID, wrf, ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  bc header == local_time, RAINV
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 0.048
+end bc
+
+bc == REL_HUM_GRID, wrf, ../../../environment_repo/1_weather/WRF/WRF4tfv_perth-1500_UTC+8_20211101-20221231.nc
+  bc header == local_time, REL_HUM
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+

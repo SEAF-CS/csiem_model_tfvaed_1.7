@@ -1,0 +1,10 @@
+!output dir == ../../../output_archive/results !Scratch 1
+
+output == netcdf
+ output parameters == h,d,v,w,sal,temp,wq_all
+ suffix == highRes
+  output interval == 3600.
+  Start Output == 01/03/2022 00:00:00 
+  Final Output == 01/04/2022 00:00:00 
+  output compression == 1
+end output

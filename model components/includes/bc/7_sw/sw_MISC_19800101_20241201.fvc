@@ -1,0 +1,103 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a environment input to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD BEACH DRAINS: --------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_components/includes/bc/7_sw
+
+!##-------------------------------------------------------------------------------------
+!## CITY OF ROCKINGHAM STORMWATER
+
+!# DRAIN D1 - LAKE RICHMOND OUTFLOW : approximated via GLM lake-richmond simulation
+!# (Rockingham Main Drain, managed by Water Corporation)
+!#
+bc == QC, 115.702535, -32.274567, ../../../environment_repo/7_sw/CSV/LakeRichmond_Outflow_1970_01_01-2024_10_29.csv
+ bc header == Date, Discharge,Sal,Temp,zeroes,TSS,Oxy,Amm,Nit,FRP,   FRP,DOC_T,POC_T,DON_T,PON_T, OP,  OP, CHLA, CHLA, CHLA, CHLA, ones,zeroes,zeroes,zeroes,zeroes
+ !                ISOTime, Q, Sal,Temp,TRACE1,TSS,Oxy,Amm,Nit,FRP,FRPADS,  DOC,  POC,  DON,  PON,DOP, POP, CHLA, CHLA, CHLA, CHLA, TRC1,TRC2,TRC3,TRC4,AGE
+ bc scale  ==              1,   1,   1,1.0000,1.0,1.0,1.0,1.0,1.0,   0.1,0.500,0.300,1.000,1.000,0.5, 0.3,0.125,0.333,2.292, 1.25,   1,   1,   1,   1,  1
+ bc offset == 0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end bc
+
+
+
+!### NOT COMPLETED
+
+!# DRAIN D2 : approximated 
+!#
+bc == QC, 115.710943, -32.275229, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D3 : approximated 
+!#
+bc == QC, 115.716090, -32.275373, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D4 : approximated 
+!#
+bc == QC, 115.717559, -32.275828, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D5 : approximated 
+!#
+bc == QC, 115.729300, -32.274484, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D6 & D7 : approximated 
+!#
+bc == QC, 115.731056, -32.273673, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D8 : approximated 
+!#
+bc == QC, 115.733217, -32.271986, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D9 : approximated 
+!#
+bc == QC, 115.738689, -32.268148, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D10 : approximated  (used by CBH)
+!#
+bc == QC, 115.746803, -32.260000, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D11 : approximated  (used by CBH)
+!#
+bc == QC, 115.751540, -32.255481, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!##-------------------------------------------------------------------------------------
+!## CITY OF KWINANA STORMWATER
+
+!# DRAIN D12 : approximated  (used by WCWA/PSDP)
+!#
+bc == QC, 115.770476, -32.204474, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!# DRAIN D13 : approximated  (used by Alcoa)
+!#
+bc == QC, 115.775052, -32.187689, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+end bc
+
+
+!### NOT COMPLETED
+

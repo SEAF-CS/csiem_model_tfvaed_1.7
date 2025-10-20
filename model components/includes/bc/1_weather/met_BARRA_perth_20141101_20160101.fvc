@@ -1,0 +1,66 @@
+
+grid definition file == ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc 
+  grid definition variables == longitude, latitude
+  grid definition label == barra
+end grid
+
+bc == MSLP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc
+  bc header == local_time, mslp
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 0.01
+end bc
+
+bc == LW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc
+  bc header == local_time, downward_longwave
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+
+bc == SW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc
+  bc header == local_time, downward_shortwave
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+
+bc == AIR_TEMP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc
+  bc header == local_time, air_temp_2m
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc offset == -273.15
+end bc
+
+bc == W10_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc
+  bc header == local_time, uwnd10m, vwnd10m
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 1.0, 1.0
+end bc
+
+bc == PRECIP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc
+  bc header == local_time, precip_rate
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 0.024
+end bc
+
+bc == REL_HUM_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_SUB_20141001_20160105_UTC+8.0.nc
+  bc header == local_time, relhum
+  bc update dt == 60.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+

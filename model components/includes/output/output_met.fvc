@@ -1,0 +1,11 @@
+! MET OUTPUT VARIABLES (PASS THROUGH FROM BC)
+
+!output dir == ..\..\outputs\results 
+
+output == netcdf
+  suffix             == met
+  output parameters  == h,d,lw_rad,precip,rel_hum,sw_rad,w10
+  output interval    == 3600
+  output compression == 1
+end output 
+
