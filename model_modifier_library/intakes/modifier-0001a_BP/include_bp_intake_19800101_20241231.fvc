@@ -1,0 +1,24 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a intake modifier to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD INTAKE: -------------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_modifier_library/intakes/modifier-0001a_BP
+
+!# BP Intake
+!#
+bc == QC, 115.755096,-32.227487  ,   ../../../model_modifier_library/intakes/modifier-0001a_BP/BP_19800101_20241231.csv
+  bc header == DATE,Q
+  bc scale  ==   -1.0
+  vertical coordinate type == height
+  vertical distribution    == ../../../model_modifier_library/intakes/modifier-0001a_BP/bp_intake_extraction_height.csv
+end bc
+

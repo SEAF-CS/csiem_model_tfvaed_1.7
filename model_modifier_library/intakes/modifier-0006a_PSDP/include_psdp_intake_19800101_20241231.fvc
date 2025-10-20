@@ -1,0 +1,24 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a intake modifier to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD INTAKE: --------------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_modifier_library/intakes/modifier_0006a_PSDP
+
+
+!# PERTH SEAWATER DESALINATION PLANT (PSDP) - Extraction for desalination
+!#
+bc == QC,115.770454,-32.200828, ../../../model_modifier_library/intakes/modifier-0006a_PSDP/PSDP1_19800101_20241231_wq.csv
+  bc header == Date, Q
+  bc scale  ==  -1.636
+  vertical coordinate type == height
+  vertical distribution    == ../../../model_modifier_library/intakes/modifier-0006a_PSDP/psdp_intake_extraction_height.csv
+end bc

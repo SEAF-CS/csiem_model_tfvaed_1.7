@@ -1,0 +1,33 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a intake modifier to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD INTAKE: --------------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_modifier_library/intakes/modifier-000X_Verve
+
+
+!# Verve Intake (South)
+!#
+bc == QC, 115.770804,-32.198633  ,  ../../../model_modifier_library/intakes/modifier-0004a_Verve/PRP_VerveSouth_19800101_20241231.csv 
+  bc header == DATE,Q
+  bc scale  ==   -1.0
+  vertical coordinate type == height
+  vertical distribution    == ../../../model_modifier_library/intakes/modifier-0004a_Verve/verve_intake_extraction_height.csv
+end bc
+
+!# Verve Intake (North)
+!#
+bc == QC, 115.771757,-32.196188  ,  ../../../model_modifier_library/intakes/modifier-0004a_Verve/PRP_VerveNorth_19800101_20241231.csv
+  bc header == DATE,Q
+  bc scale  ==   -1.0
+  vertical coordinate type == height
+  vertical distribution    == ../../../model_modifier_library/intakes/modifier-0004a_Verve/verve_intake_extraction_height.csv
+end bc

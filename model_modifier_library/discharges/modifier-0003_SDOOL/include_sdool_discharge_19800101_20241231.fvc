@@ -1,0 +1,37 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a discharge modifier to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD DISCHARGE: -----------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_modifier_library/discharges/modifier-000X_SDOOL
+
+!# SEPIA DEPRESSION OCEAN OUTLET LANDLINE (SDOOL) Discharge - previously in 7_discharge/SDOOL/, now using NOD outfall data from Woodman Point, East Rockingham and Point Peron
+!
+bc == QC, 115.6563294,-32.28971038  ,  ../../../model_modifier_library/discharges/modifier-0003_SDOOL/NOD/Woodman_Point_NOD_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+  bc scale  ==     1.0,1.00,1.00,1.000,1.0,1.0,1.0,1.0,0.1,    0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
+  vertical coordinate type == depth
+  vertical distribution    == ../../../model_modifier_library/discharges/modifier-0003_SDOOL/sdool_discharge_depth_surface1m.csv
+end bc
+
+bc == QC, 115.6563294,-32.28971038  ,  ../../../model_modifier_library/discharges/modifier-0003_SDOOL/NOD/East_Rockingham_NOD_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+  bc scale  ==     1.0,1.00,1.00,1.000,1.0,1.0,1.0,1.0,0.1,    0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
+  vertical coordinate type == depth
+  vertical distribution    == ../../../model_modifier_library/discharges/modifier-0003_SDOOL/sdool_discharge_depth_surface1m.csv
+end bc
+
+bc == QC, 115.6563294,-32.28971038  ,  ../../../model_modifier_library/discharges/modifier-0003_SDOOL/NOD/Point_Peron_NOD_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+  bc scale  ==     1.0,1.00,1.00,1.000,1.0,1.0,1.0,1.0,0.1,    0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
+  vertical coordinate type == depth
+  vertical distribution    == ../../../model_modifier_library/discharges/modifier-0003_SDOOL/sdool_discharge_depth_surface1m.csv
+end bc

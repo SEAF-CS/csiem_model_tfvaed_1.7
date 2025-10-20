@@ -1,0 +1,36 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a discharge modifier to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD DISCHARGE: -----------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_modifier_library/discharges/modifier-000X_KPS
+
+!# KPS - Stage A+B Discharge
+!#
+bc == QC, 115.772514,-32.197657  ,  ../../../model_modifier_library/discharges/modifier-0004b_KPS/KPS_A_B_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeroes,Ones, DO,Ones,Ones,Ones,   Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones, Ones, Ones,Zeroes,Zeroes,Zeroes, Ones,Zeroes
+ !             Date,Q,Salt,Temp,TRACE1, TSS,Oxy, Amm, Nit, FRP,FRP_ads, DOC, POC, DON, PON, DOP, POP, GRN, BGA,MDIAT, DINO,  TRC1,  TRC2,  TRC3, TRC4,   AGE 
+  bc scale ==     1.0, 1.0,1.0,    1.0,0.01,1.0,0.01,0.01,0.01,   0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01, 0.01, 0.01,  0.01,     1,     1,    1,     1, 1
+  bc default == 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+  vertical coordinate type == depth
+  vertical distribution == ../../../model_modifier_library/discharges/modifier-0004b_KPS/kps_discharge_depth_surface1m.csv
+end bc
+
+!# KPS - Stage C Discharge
+!# 
+bc == QC, 115.772244,-32.198198  ,  ../../../model_modifier_library/discharges/modifier-0004b_KPS/KPS_C_CPS_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeroes,Ones,DO, Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Zeroes,Zeroes,Zeroes,Ones,Zeroes
+  bc scale ==     1.0,1.00,1.00,1.0000,0.01,1.00,0.01,0.01,0.01,0.01,   0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01, 0.01,1,1,1,1,1
+  bc default == 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+  vertical coordinate type == depth
+  vertical distribution == ../../../model_modifier_library/discharges/modifier-0004b_KPS/kps_discharge_depth_surface1m.csv
+end bc
+

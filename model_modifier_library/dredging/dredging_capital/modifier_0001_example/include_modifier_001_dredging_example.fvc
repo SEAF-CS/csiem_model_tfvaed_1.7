@@ -1,0 +1,5 @@
+! DREDGE  (example)
+!bc == FCM, ../../bc_repo/9_operations/dredging/mimic_dredge.csv
+!  bc header == Date,lon,lat,Salt,Temp,ZEROS,TSS,DO,AMM,NIT,ONES,FRPADS,DOC,POC,DON,PON,DOP,POP,GRN,BGA,CRYPT,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+!  bc scale == 1,1,1,1,1,10,1,1,1,0.2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+!end bc

@@ -1,0 +1,33 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a discharge modifier to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD DISCHARGE: -----------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_modifier_library/discharges/modifier-000X_WWTP
+! NOD discharges other than SDOOL, including Beenyup and Subiaco; Alkimos is outside of domain so not listed here
+
+!# WATER CORPORATION BEENYUP WWTP OCEAN OUTFALL
+!#
+bc == QC, 115.7116,-31.7631  ,  ../../../model_modifier_library/discharges/modifier-0002_WWTP/NOD/Beenyup_NOD_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+  bc scale ==     1.0,1.00,1.00,1.000,1.0,1.0,1.0,1.0,0.1,    0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
+  vertical coordinate type == depth
+  vertical distribution    == ../../../model_modifier_library/discharges/modifier-0002_WWTP/wwtp_discharge_depth_surface1m.csv
+end bc
+
+!# WATER CORPORATION SUBIACO WWTP OCEAN OUTFALL
+!#
+bc == QC, 115.7437,-31.9553  ,  ../../../model_modifier_library/discharges/modifier-0002_WWTP/NOD/Subiaco_NOD_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+  bc scale ==     1.0,1.00,1.00,1.000,1.0,1.0,1.0,1.0,0.1,    0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
+  vertical coordinate type == depth
+  vertical distribution    == ../../../model_modifier_library/discharges/modifier-0002_WWTP/wwtp_discharge_depth_surface1m.csv
+end bc
