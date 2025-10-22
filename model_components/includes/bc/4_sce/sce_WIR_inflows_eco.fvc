@@ -23,7 +23,7 @@ end BC
 
 !# CANNING RIVER BOUNDARY @ CANNING BRIDGE : interpolated from raw WIR dataset 
 !#
-bc== QC, 115.8511, -32.0058, ../../../environment_repo/4_sce/CSV/Canning_Inflow_2000_01_01-2024_10_29.csv
+bc== QC, 115.8511, -32.0058, ../../../environment_repo/4_sce/CSV/CAN_Inflow_2000_01_01-2024_10_29.csv
  bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,CHLA,ONES,ONES,ZEROS
  bc scale ==         1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,0.15,0.015,1,0.15,0.015,1,0.15,0.015,1,0.15,0.015,5,4,1
  bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
