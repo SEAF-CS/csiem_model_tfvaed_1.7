@@ -18,7 +18,7 @@
 ! Developed as part of the WAMSI-Westport Marine Science Program !
 ! Date 01/08/2025                                                !
 !                                                                !
-! This simulation focus: Nov/22-Mar/2024 period with WQ          !                        
+! This simulation focus: Nov/19-Dec/2020 period with WQ          !                        
 ! AED model configuration including nutrients and bio            !
 !________________________________________________________________!
 
@@ -54,8 +54,8 @@
   cfl external == 0.7                                             ! <Global Maximum Courant Number>
   cfl internal == 0.7                                             ! <Global Maximum Courant Number>
   time format == ISODATE                                          ! <Hours;ISODate>
-  start time ==  02/11/2022 00:00:00                              ! <simulation start time>
-  end time   ==  31/03/2024 00:00:00                              ! <simulation stop time>
+  start time ==  02/11/2019 00:00:00                              ! <simulation start time>
+  end time   ==  31/12/2020 00:00:00                              ! <simulation stop time>
   timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
   turbulence update dt == 300.                                    ! for GOTM (s)
   display dt == 900.                                              !
@@ -112,13 +112,13 @@ echo geometry == 1
 !_________________________________________________________________
 
 ! WEATHER  (WRF output)
-  include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20221101_20240431.fvc  
+  include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20191101_20201231.fvc  
 
 ! WAVES  (WWM output)
-  include == ../../model_components/includes/bc/2_waves/wave_WWM_20221101_20240331.fvc   
+  include == ../../model_components/includes/bc/2_waves/wave_WWM_20191101_20210101.fvc   
 
 ! OCEAN  (ROMS HD plus OBC_wq from 6-polygon climatology)
-  include == ../../model_components/includes/bc/3_ocean/obc_wq_20221001_20240331_6OBC_climatology.fvc   
+  include == ../../model_components/includes/bc/3_ocean/obc_wq_20191001_20201231_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
   include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows.fvc
@@ -159,7 +159,7 @@ echo geometry == 1
   write check files  == ./check/
   write restart dt   == 480
   logdir             == log
-  output dir         == ../../output_archive/2023A/
+  output dir         == ../../output_archive/2020A/
   include == ../../model_components/includes/output/output_wq.fvc
   include == ../../model_components/includes/output/output_met.fvc
   include == ../../model_components/includes/output/output_wave.fvc
