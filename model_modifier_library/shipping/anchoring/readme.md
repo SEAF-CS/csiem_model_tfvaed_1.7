@@ -1,4 +1,4 @@
 ## Cockburn Sound model : boundary condition includes files
 
 <br>
-Configuration instructions for industrial discharges of TUFLOW-FV simulation
+Configuration instructions for shipping based activities within a TUFLOW-FV simulation

@@ -16,10 +16,10 @@
 ! TUFLOW-FV Control File                                         !
 !                                                                !
 ! Developed as part of the WAMSI-Westport Marine Science Program !
-! Date 01/08/2025                                                !
+! Date 21/06/2023                                                !
 !                                                                !
-! This simulation focus: Nov/22-Mar/2024 period with WQ          !                        
-! AED model configuration including nutrients and bio            !
+! This simulation focus: Jan 2023 - March 2024 period with WQ    !                        
+! AED model configuration including nutrients and five phytos    !
 !________________________________________________________________!
 
 
@@ -30,7 +30,7 @@
 
 ! SIMULATION CONFIGURATION
 !_________________________________________________________________
-  spherical == 1  
+spherical == 1  
   include salinity == 1,1                                         ! <0;1, 0;1> 0 for false & 1 for true
   include temperature == 1,1                                      ! <0;1, 0;1> 0 for false & 1 for true
   include sediment == 0,0                                         ! <0;1, 0;1> 0 for false & 1 for true
@@ -46,7 +46,7 @@
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
   water quality model == EXTERNAL
-  external water quality model dir == ../../model_components/includes/wq-eco/AED_A001
+  external water quality model dir == ../../model_components/includes/wq-eco/AED_B009
 
 
 ! TIME COMMANDS
@@ -87,7 +87,7 @@ GIS format == shp
   shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
  
 echo geometry == 1
-  include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_budgeting_6OBC.fvc
+  include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
 
 
 ! BOTTOM MATERIALS
@@ -101,10 +101,10 @@ echo geometry == 1
 
 !INITIAL CONDITIONS
 !_________________________________________________________________
-  Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov.csv
+  Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov_B009.csv
 
  !include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
- !restart file == ./log/csiem_A001_20221101_20240401_WQ.rst
+ !restart file == ./log/csiem_B009_20221101_20240401_WQ.rst
  !use restart file time == 0
 
 
@@ -159,9 +159,10 @@ echo geometry == 1
   write check files  == ./check/
   write restart dt   == 480
   logdir             == log
-  output dir         == ../../output_archive/2023A-eco/
+  output dir         == ../../output_archive/2023B-eco/
   include == ../../model_components/includes/output/output_wq.fvc
   include == ../../model_components/includes/output/output_met.fvc
   include == ../../model_components/includes/output/output_wave.fvc
  !include == ../../model_components/includes/output/output_points.fvc
  !include == ../../model_components/includes/output/output_trc.fvc
+
