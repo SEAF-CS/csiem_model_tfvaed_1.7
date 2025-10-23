@@ -16,7 +16,7 @@
 !# GROUNDWATER FLUX ALONG BEACH AND KWINANA SHELF : interpolated from PRAMS model to 19 polygons
 !#
 
-Read GIS SA == ../../../../gis_repo/4_gw/groundwater_zones_v3.shp
+Read GIS SA == ../../../../gis_repo/4_gw/PRAMS/groundwater_zones_v3.shp
 
 ! Each zone reads in 4 TFV and 21 AED vars. They are assigned from these:
 !Date,FLOW,SAL,TEMP,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,ONES,ZER
