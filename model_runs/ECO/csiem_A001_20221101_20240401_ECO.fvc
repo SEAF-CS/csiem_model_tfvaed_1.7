@@ -26,7 +26,7 @@
 ! SIMULATION HARDWARE 
 !_________________________________________________________________
   hardware == gpu
-
+ 
 
 ! SIMULATION CONFIGURATION
 !_________________________________________________________________
@@ -54,11 +54,11 @@
   cfl external == 0.7                                             ! <Global Maximum Courant Number>
   cfl internal == 0.7                                             ! <Global Maximum Courant Number>
   time format == ISODATE                                          ! <Hours;ISODate>
-  start time ==  02/11/2022 00:00:00 
+  start time ==  02/11/2022 00:00:00                              ! <simulation start time>
   end time   ==  31/03/2024 00:00:00                              ! <simulation stop time>
   timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
   turbulence update dt == 300.                                    ! for GOTM (s)
-  display dt == 900.              
+  display dt == 900.                                              !
 
 
 ! MODEL PARAMETERS
@@ -66,7 +66,7 @@
   stability limits == 17.0,10.0                                   ! <maximum WL, maximum velocity>
   cell wet/dry depths == 5.0e-3, 1.0e-1                           ! <cells dry depth (m), cell wet depth (m)>
   cell 3d depth == 1 ! 0.5                                        ! <cells where computation are 2d in case they are shallower than>
-  global bottom roughness == 0.05                                 ! <Global roughness>
+  global bottom roughness == 0.05                                 ! <lobal roughness>
   g == 9.81
   reference salinity == 35.0
   reference temperature == 20.0
@@ -83,19 +83,19 @@
 
 ! GIS PROJECTION, GEOMETRY & DOMAIN
 !_________________________________________________________________
-  GIS format == shp
+GIS format == shp
   shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
  
-  echo geometry == 1
+echo geometry == 1
   include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_budgeting_6OBC.fvc
 
 
 ! BOTTOM MATERIALS
 !_________________________________________________________________
-! Material zones
+! Material zones:
   Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
 
-! Bottom roughness
+! Bottom roughness:
   include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
 
 
@@ -121,11 +121,11 @@
   include == ../../model_components/includes/bc/3_ocean/obc_wq_20221001_20240331_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
-  include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows.fvc
-  include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows.fvc
+  include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_eco.fvc
+  include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_eco.fvc
 
 ! GROUNDWATER  (PRAMS output into 19 zones)
- ! include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
+  include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
 
 ! STORMWATER  (13 stormwater drains)
  !include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc 
@@ -134,19 +134,19 @@
 ! ECOSYSTEM MODIFIERS (licensed industry activities) 
 !_________________________________________________________________
 
-!  include == ../../model_modifier_library/intakes/modifier-0001a_BP/include_bp_intake_19800101_20241231.fvc
-!  include == ../../model_modifier_library/discharges/modifier-0001b_BP/include_bp_discharge_19800101_20241231.fvc
-!
-!  include == ../../model_modifier_library/intakes/modifier-000Xa_PSDP/include_psdp_intake_19800101_20241231.fvc
-!  include == ../../model_modifier_library/discharges/modifier-000Xb_PSDP/include_psdp_discharge_19800101_20241231.fvc
-!
-!  include == ../../model_modifier_library/intakes/modifier-000X_Verve/include_verve_intake_19800101_20241231.fvc
-!  include == ../../model_modifier_library/discharges/modifier-000X_KPS/include_kps_discharge_19800101_20241231.fvc
-!
-!  include == ../../model_modifier_library/discharges/modifier-000X_WWTP/include_wwtp_discharge_19800101_20241231.fvc
-!  include == ../../model_modifier_library/discharges/modifier-000X_SDOOL/include_sdool_discharge_19800101_20241231.fvc
-!
-!  include == ../../model_modifier_library/discharges/modifier-000X_TiWest/include_tiwest_discharge_19800101_20241231.fvc
+  include == ../../model_modifier_library/intakes/modifier-0001a_BP/include_bp_intake_19800101_20241231.fvc
+  include == ../../model_modifier_library/discharges/modifier-0001b_BP/include_bp_discharge_19800101_20241231.fvc
+
+  include == ../../model_modifier_library/discharges/modifier-0002_WWTP/include_wwtp_discharge_19800101_20241231.fvc
+  include == ../../model_modifier_library/discharges/modifier-0003_SDOOL/include_sdool_discharge_19800101_20241231.fvc
+
+  include == ../../model_modifier_library/intakes/modifier-0004a_Verve/include_verve_intake_19800101_20241231.fvc
+  include == ../../model_modifier_library/discharges/modifier-0004b_KPS/include_kps_discharge_19800101_20241231.fvc
+
+  include == ../../model_modifier_library/discharges/modifier-0005_TiWest/include_tiwest_discharge_19800101_20241231.fvc
+
+  include == ../../model_modifier_library/intakes/modifier-0006a_PSDP/include_psdp_intake_19800101_20241231.fvc
+  include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_psdp_discharge_19800101_20241231.fvc
 
 
 ! ECOSYSTEM MODIFIERS (proposed actions) 
@@ -159,9 +159,9 @@
   write check files  == ./check/
   write restart dt   == 480
   logdir             == log
+  output dir         == ../../output_archive/2023A-eco/
   include == ../../model_components/includes/output/output_wq.fvc
   include == ../../model_components/includes/output/output_met.fvc
   include == ../../model_components/includes/output/output_wave.fvc
  !include == ../../model_components/includes/output/output_points.fvc
  !include == ../../model_components/includes/output/output_trc.fvc
-

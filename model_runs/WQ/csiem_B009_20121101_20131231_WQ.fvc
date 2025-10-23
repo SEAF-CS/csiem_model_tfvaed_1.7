@@ -16,16 +16,16 @@
 ! TUFLOW-FV Control File                                         !
 !                                                                !
 ! Developed as part of the WAMSI-Westport Marine Science Program !
-! Date 01/08/2025                                                !
+! Date 21/06/2025                                                !
 !                                                                !
-! This simulation focus: Nov/22-Mar/2024 period with WQ          !                        
+! This simulation focus: Nov/12-Dec/2013 period with WQ          !                        
 ! AED model configuration including nutrients and bio            !
 !________________________________________________________________!
 
 
 ! SIMULATION HARDWARE 
 !_________________________________________________________________
-  hardware == gpu
+ hardware == gpu
  
 
 ! SIMULATION CONFIGURATION
@@ -45,8 +45,8 @@
 
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
-  water quality model == EXTERNAL
-  external water quality model dir == ../../model_components/includes/wq/AED_A001
+water quality model == EXTERNAL
+  external water quality model dir == ../../model_components/includes/wq/AED_B009
 
 
 ! TIME COMMANDS
@@ -54,8 +54,8 @@
   cfl external == 0.7                                             ! <Global Maximum Courant Number>
   cfl internal == 0.7                                             ! <Global Maximum Courant Number>
   time format == ISODATE                                          ! <Hours;ISODate>
-  start time ==  02/11/2022 00:00:00                              ! <simulation start time>
-  end time   ==  31/03/2024 00:00:00                              ! <simulation stop time>
+  start time ==  02/11/2012 00:00:00                              ! <simulation start time>
+  end time   ==  31/12/2013 00:00:00                              ! <simulation stop time>
   timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
   turbulence update dt == 300.                                    ! for GOTM (s)
   display dt == 900.                                              !
@@ -87,7 +87,7 @@ GIS format == shp
   shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
  
 echo geometry == 1
-  include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_budgeting_6OBC.fvc
+  include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
 
 
 ! BOTTOM MATERIALS
@@ -101,10 +101,10 @@ echo geometry == 1
 
 !INITIAL CONDITIONS
 !_________________________________________________________________
-  Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov.csv
+  Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov_B009.csv
 
  !include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
- !restart file == ./log/csiem_A001_20221101_20240401_WQ.rst
+ !restart file == ./log/csiem_B009_20221101_20240401_WQ.rst
  !use restart file time == 0
 
 
@@ -112,17 +112,17 @@ echo geometry == 1
 !_________________________________________________________________
 
 ! WEATHER  (WRF output)
-  include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20221101_20240431.fvc  
+  include == ../../model_components/includes/bc/1_weather/met_BARRA_perth_20121101_20140101.fvc  
 
 ! WAVES  (WWM output)
-  include == ../../model_components/includes/bc/2_waves/wave_WWM_20221101_20240331.fvc   
+  include == ../../model_components/includes/bc/2_waves/wave_WWM_20121101_20140101.fvc   
 
 ! OCEAN  (ROMS HD plus OBC_wq from 6-polygon climatology)
-  include == ../../model_components/includes/bc/3_ocean/obc_wq_20221001_20240331_6OBC_climatology.fvc   
+  include == ../../model_components/includes/bc/3_ocean/obc_wq_20121101_20131231_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
-  include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
-  include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_wq.fvc
+  include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows.fvc
+  include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows.fvc
 
 ! GROUNDWATER  (PRAMS output into 19 zones)
   include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
@@ -159,7 +159,7 @@ echo geometry == 1
   write check files  == ./check/
   write restart dt   == 480
   logdir             == log
-  output dir         == ../../output_archive/2023A/
+  output dir         == ../../output_archive/2013B/
   include == ../../model_components/includes/output/output_wq.fvc
   include == ../../model_components/includes/output/output_met.fvc
   include == ../../model_components/includes/output/output_wave.fvc

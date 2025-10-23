@@ -1,0 +1,6 @@
+.DS_Store
+model_runs/WQ/log/
+model_runs/WQ/check/
+model_runs/ECO/log/
+model_runs/ECO/check/
+model_components/environment_repo/

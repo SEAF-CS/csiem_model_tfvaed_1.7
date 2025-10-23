@@ -1,0 +1,30 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a environment input to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD RIVER FLOW: ----------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_components/includes/bc/4_sce
+
+!# SWAN RIVER BOUNDARY @ NARROWS : interpolated from raw WIR dataset 
+!#
+bc == Q, 2, ../../../environment_repo/4_sce/CSV/NAR_Inflow_1994_10_06-2024_10_29.csv
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
+ bc scale  ==        1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end BC
+
+!# CANNING RIVER BOUNDARY @ CANNING BRIDGE : interpolated from raw WIR dataset 
+!#
+bc== QC, 115.8511, -32.0058, ../../../environment_repo/4_sce/CSV/CAN_Inflow_2000_01_01-2024_10_29.csv
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
+ bc scale  ==        1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end BC
