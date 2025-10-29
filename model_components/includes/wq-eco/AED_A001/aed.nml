@@ -85,7 +85,7 @@
 	            'aed_totals'         ,     
               'aed_macrophyte'     ,
 	            'aed_macroalgae'     ,
-            'aed_bivalve'        ,
+              'aed_bivalve'        ,
 /
 
 !###############################################################################
@@ -497,14 +497,14 @@
    num_mphy         = 5
    the_mphy         = 1,2,3,4,5
    n_zones          = 5
-   active_zones     = 60,90,91,92,93 ! Refer to ../gis_repo/2_benthic/ (also check zone_lock)
+   active_zones     = 98,90,91,92,93 ! Refer to ../gis_repo/2_benthic/ (also check zone_lock)
    dbase            = '../../model_components/includes/wq-eco/aed_macrophyte_pars.csv'
    mac_initial      = 1  ! use 4 to intiialise from benthic file
  !# Epiphytes
    simEpiphytes = .true. ! .false. !
    epi_model = 1
    R_epig = 0.1
-   R_epib = 0.
+   R_epir = 0.01
    I_Kepi = 100.
    epi_max = 10000.
    epi_Xnc = 0.1
@@ -516,10 +516,10 @@
    epi_initial = 0.1
  !# Advanced options
    simStaticBiomass = .false.
-   simMacFeedback   = .false. !.true.
+   simMacFeedback   = .false.
    simFruiting      = .true.
    simMacDrag       = .false.
-   diag_level       = 2
+   diag_level       = 10
    water_nutrient_frac = 0.5 ! percentage of N&P that plants get from water-column
 
  !  num_mphy         = 1
@@ -588,7 +588,7 @@
    dbase = '../../model_components/includes/wq-eco/aed_bivalve_pars.nml'
   !--[ benthic setup ]--!
    n_zones = 14
-   active_zones = 61,21,22,23,24,25,26,27,90,91,92,93,94,95 
+   active_zones = 61,21,22,23,24,25,26,27,90,91,92,93,94,95 , 99
    initFromDensity = .false. !.true.
   !--[ bivalve filtration tracer ]--!
    simBivTracer = .true.

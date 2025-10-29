@@ -93,7 +93,7 @@ echo geometry == 1
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
-  Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
+  Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_Ranae_SGspp_final_final_filtrationzone.shp
 
 ! Bottom roughness:
   include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc

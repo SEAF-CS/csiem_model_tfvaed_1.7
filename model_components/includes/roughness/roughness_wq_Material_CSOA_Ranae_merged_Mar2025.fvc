@@ -73,3 +73,14 @@ material == 59 ! artificial structure
  bottom roughness == 0.2
  spatial reconstruction == 1
 end material
+
+material == 98 ! seagrass restoration area
+ bottom roughness == 0.06
+ spatial reconstruction == 1
+end material
+
+material == 99 ! aquaculture lease
+ bottom roughness == 0.03
+ spatial reconstruction == 1
+end material
+
