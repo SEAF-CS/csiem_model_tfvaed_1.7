@@ -18,7 +18,7 @@
 
 Read GIS SA == ../../../../gis_repo/4_gw/PRAMS/groundwater_zones_v3.shp
 
-! Each zone reads in 4 TFV and 21 AED vars. They are assigned from these:
+! Each zone reads in 3 TFV and 18 AED vars. They are assigned from these:
 !Date,FLOW,SAL,TEMP,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,ONES,ZER
 
 !BC == QC_POLY, GW1, ../../../../environment_repo/6_gw/PRAMS/SGD_zone1_19800101_20240401.csv
@@ -28,50 +28,50 @@ Read GIS SA == ../../../../gis_repo/4_gw/PRAMS/groundwater_zones_v3.shp
 !End BC
 
 BC == QC_POLY, GW2, ../../../../environment_repo/6_gw/PRAMS/SGD_zone2_19800101_20240401.csv
- !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+ !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW3, ../../../../environment_repo/6_gw/PRAMS/SGD_zone3_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW4, ../../../../environment_repo/6_gw/PRAMS/SGD_zone4_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW5, ../../../../environment_repo/6_gw/PRAMS/SGD_zone5_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW6, ../../../../environment_repo/6_gw/PRAMS/SGD_zone6_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW7, ../../../../environment_repo/6_gw/PRAMS/SGD_zone7_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW8, ../../../../environment_repo/6_gw/PRAMS/SGD_zone8_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
@@ -79,77 +79,77 @@ End BC
 
 BC == QC_POLY, GW9, ../../../../environment_repo/6_gw/PRAMS/SGD_zone9_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW10, ../../../../environment_repo/6_gw/PRAMS/SGD_zone10_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW11, ../../../../environment_repo/6_gw/PRAMS/SGD_zone11_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW12, ../../../../environment_repo/6_gw/PRAMS/SGD_zone12_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW13, ../../../../environment_repo/6_gw/PRAMS/SGD_zone13_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW14, ../../../../environment_repo/6_gw/PRAMS/SGD_zone14_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW15, ../../../../environment_repo/6_gw/PRAMS/SGD_zone15_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW16, ../../../../environment_repo/6_gw/PRAMS/SGD_zone16_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW17, ../../../../environment_repo/6_gw/PRAMS/SGD_zone17_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW18, ../../../../environment_repo/6_gw/PRAMS/SGD_zone18_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
 
 BC == QC_POLY, GW19, ../../../../environment_repo/6_gw/PRAMS/SGD_zone19_19800101_20240401.csv
  !BC VARS   == Date,Flow,SAL,TEMP,TRACE1,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,POP,MIXED,PICO,DIAT,DINO,TR1,TR2,TR3,TR4,AGE
-  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,ones,zeros,zeros,zeros
+  BC Header == Date,Flow,SAL,TEMP,zeros,SS1,zeros,OXY,AMM,NIT,FRP,FRP_ADS,DOC,POC,DON,PON,DOP,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros,zeros
   BC scale  ==     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   bc update dt == 86400
 End BC
