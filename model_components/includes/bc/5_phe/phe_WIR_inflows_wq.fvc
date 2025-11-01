@@ -13,9 +13,10 @@
 
 ! ..../csiem_model_tfvaed_2.0/model_components/includes/bc/5_phe
 
-!# PEEL-HARVEY RIVER BOUNDARY : interpolated from raw WIR dataset 
-!#
+!# WATER QUALITY AED CONFIG (CSIEM1.7 version) : 18 AED VARIABLES
 !# Headers in file: Date,Flow,SAL,TEMP,TSS,OXY,AMM,NIT,FRP,DOC_T,POC_T,DON_T,PON_T,OP,CHLA,TN,TP,ONES,ZEROS
+
+!# PEEL-HARVEY RIVER BOUNDARY : interpolated from raw WIR dataset 
 !#
 bc == QC, 115.6287, -32.5980, ../../../environment_repo/5_phe/CSV/PeelHarvey_Inflow_1970_01_01-2024_10_29.csv
  bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA

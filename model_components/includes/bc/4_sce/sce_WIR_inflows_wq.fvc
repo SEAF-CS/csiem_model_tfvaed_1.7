@@ -13,6 +13,9 @@
 
 ! ..../csiem_model_tfvaed_2.0/model_components/includes/bc/4_sce
 
+!# WATER QUALITY AED CONFIG (CSIEM1.7 version) : 18 AED VARIABLES
+!# Columns in CSV file are: Date,Flow,SAL,TEMP,TSS,OXY,SIL,AMM,NIT,FRP,DOC_T,POC_T,DON_T,PON_T,OP,CHLA,TN,TP,ONES,ZEROS
+
 !# SWAN RIVER BOUNDARY @ NARROWS : interpolated from raw WIR dataset 
 !#
 bc == Q, 2, ../../../environment_repo/4_sce/CSV/NAR_Inflow_1994_10_06-2024_10_29.csv
