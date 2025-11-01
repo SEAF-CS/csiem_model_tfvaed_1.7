@@ -1,0 +1,71 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a environment input to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD OCEAN BOUNDARY: ------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_components/includes/bc/3_ocean
+
+!# OCEAN BOUNDARY PART 1: interpolated from ROMS
+!#
+grid definition file == ../../../environment_repo/3_ocean/ROMS/ROMS_UTC+8_20201001_20211231_bias_correction.nc
+  grid definition variables == lon, lat, depth
+  vertical coordinate type == depth
+  grid definition label == roms
+  boundary grid map == 1
+end grid
+
+bc == OBC_GRID, roms, ../../../environment_repo/3_ocean/ROMS/ROMS_UTC+8_20201001_20211231_bias_correction.nc
+  sub-type == 6
+  bc header == time,surf_el,water_u,water_v,salinity,water_temp 
+  bc nodestrings == 1,12,13,14,15,16
+  bc update dt == 900.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00    ! apply time zone correction
+  bc offset == -0.34, 0.0, 0.0, 0.0        ! This is an offset for water level ...
+  ! surf_el,water_u,water_v,salinity,water_temp,Age,TSS,TSS,Oxy,Amm,Nit,FRP,FRP_ads,DOC,POC,DON,PON,DOP,POP,CHLA,CHLA,CHLA,CHLA,CHLA
+  bc default == 0.0, 0.0, 0.0, 35.0, 24.7, 0.0, 1.0, 214.9,0,0,0, 0,0,0,0,0,0,0, 0, 0, 0, 0,0,0,0,0
+end bc
+
+!# OCEAN BOUNDARY PART 2: interpolated from PERTH O-BGC climatology
+! Biogeochemical (scalar) bcs for Cockburn Sound boundary nodestring
+! Names in CSV files : Date,TSS,DO,AMM,NIT,FRP,FRPADS,POC,DOC,PON,DON,POP,DOP,DIATOM,DINO,GREEN,PICO,ZEROS,ONES
+
+bc == SCALAR, 1, ../../../environment_repo/3_ocean/BGC/ocean_bgc_monthly_1980_2024_poly1.csv
+    bc header == Date,dummy,dummy,ZEROS,TSS,TSS,DO,AMM,NIT,FRP,FRPADS,DOC,POC,DON,PON,DOP,POP,GREEN,GREEN,GREEN,PICO,PICO,PICO,DIATOM,DIATOM,DIATOM,DINO,DINO,DINO,ONES,ONES,ZEROS
+    bc scale  ==      1,1,1,0.95,0.05,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,3,1,1
+end bc
+
+bc == SCALAR, 12, ../../../environment_repo/3_ocean/BGC/ocean_bgc_monthly_1980_2024_poly2.csv
+    bc header == Date,dummy,dummy,ZEROS,TSS,TSS,DO,AMM,NIT,FRP,FRPADS,DOC,POC,DON,PON,DOP,POP,GREEN,GREEN,GREEN,PICO,PICO,PICO,DIATOM,DIATOM,DIATOM,DINO,DINO,DINO,ONES,ONES,ZEROS
+    bc scale  ==      1,1,1,0.95,0.05,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,3,1,1
+end bc
+
+bc == SCALAR, 13, ../../../environment_repo/3_ocean/BGC/ocean_bgc_monthly_1980_2024_poly3.csv
+    bc header == Date,dummy,dummy,ZEROS,TSS,TSS,DO,AMM,NIT,FRP,FRPADS,DOC,POC,DON,PON,DOP,POP,GREEN,GREEN,GREEN,PICO,PICO,PICO,DIATOM,DIATOM,DIATOM,DINO,DINO,DINO,ONES,ONES,ZEROS
+    bc scale  ==      1,1,1,0.95,0.05,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,3,1,1
+end bc
+
+bc == SCALAR, 14, ../../../environment_repo/3_ocean/BGC/ocean_bgc_monthly_1980_2024_poly4.csv
+    bc header == Date,dummy,dummy,ZEROS,TSS,TSS,DO,AMM,NIT,FRP,FRPADS,DOC,POC,DON,PON,DOP,POP,GREEN,GREEN,GREEN,PICO,PICO,PICO,DIATOM,DIATOM,DIATOM,DINO,DINO,DINO,ONES,ONES,ZEROS
+    bc scale  ==      1,1,1,0.95,0.05,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,3,1,1
+end bc
+
+bc == SCALAR, 15, ../../../environment_repo/3_ocean/BGC/ocean_bgc_monthly_1980_2024_poly5.csv
+    bc header == Date,dummy,dummy,ZEROS,TSS,TSS,DO,AMM,NIT,FRP,FRPADS,DOC,POC,DON,PON,DOP,POP,GREEN,GREEN,GREEN,PICO,PICO,PICO,DIATOM,DIATOM,DIATOM,DINO,DINO,DINO,ONES,ONES,ZEROS
+    bc scale  ==      1,1,1,0.95,0.05,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,3,1,1
+end bc
+
+bc == SCALAR, 16, ../../../environment_repo/3_ocean/BGC/ocean_bgc_monthly_1980_2024_poly6.csv
+    bc header == Date,dummy,dummy,ZEROS,TSS,TSS,DO,AMM,NIT,FRP,FRPADS,DOC,POC,DON,PON,DOP,POP,GREEN,GREEN,GREEN,PICO,PICO,PICO,DIATOM,DIATOM,DIATOM,DINO,DINO,DINO,ONES,ONES,ZEROS
+    bc scale  ==      1,1,1,0.95,0.05,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,1.5,0.15,0.015,3,1,1
+end bc
+
+
