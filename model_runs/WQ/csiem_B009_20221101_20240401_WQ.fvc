@@ -121,8 +121,8 @@ echo geometry == 1
   include == ../../model_components/includes/bc/3_ocean/obc_wq_20221001_20240331_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
-  include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows.fvc
-  include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows.fvc
+  include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
+  include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_wq.fvc
 
 ! GROUNDWATER  (PRAMS output into 19 zones)
   include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
