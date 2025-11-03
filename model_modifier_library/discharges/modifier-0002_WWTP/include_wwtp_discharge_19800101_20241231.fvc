@@ -17,8 +17,8 @@
 !# WATER CORPORATION BEENYUP WWTP OCEAN OUTFALL
 !#
 bc == QC, 115.7116,-31.7631  ,  ../../../model_modifier_library/discharges/modifier-0002_WWTP/NOD/Beenyup_NOD_19800101_20241231_wq.csv
-  bc header == Date,Q,Salt,Temp,Zeros,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
-  bc scale ==     1.0,1.00,1.00,1.000,1.0,1.0,1.0,1.0,0.1,    0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
+  bc header == Date,Q,Salt,Temp,Zeros,TSS,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+  bc scale  ==      1.0,1.0,1.0,1.0,1.0,0.01,1.0,1.0,1.0,0.1,  0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
   vertical coordinate type == depth
   vertical distribution    == ../../../model_modifier_library/discharges/modifier-0002_WWTP/wwtp_discharge_depth_surface1m.csv
 end bc
@@ -26,8 +26,8 @@ end bc
 !# WATER CORPORATION SUBIACO WWTP OCEAN OUTFALL
 !#
 bc == QC, 115.7437,-31.9553  ,  ../../../model_modifier_library/discharges/modifier-0002_WWTP/NOD/Subiaco_NOD_19800101_20241231_wq.csv
-  bc header == Date,Q,Salt,Temp,Zeros,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
-  bc scale ==     1.0,1.00,1.00,1.000,1.0,1.0,1.0,1.0,0.1,    0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
+  bc header == Date,Q,Salt,Temp,Zeros,TSS,TSS, DO, AMM,NIT,FRP, FRPADS, DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO, ZEROS, ZEROS, ZEROS, ZEROS, ZEROS
+  bc scale  ==      1.0,1.0,1.0,1.0,1.0,0.01,1.0,1.0,1.0,0.1,  0.1, 1.0,1.0,1.0,1.0,0.1,0.1,1.0,1.0,1.0,1.0, 1.0,1,1,1,1,1
   vertical coordinate type == depth
   vertical distribution    == ../../../model_modifier_library/discharges/modifier-0002_WWTP/wwtp_discharge_depth_surface1m.csv
 end bc
