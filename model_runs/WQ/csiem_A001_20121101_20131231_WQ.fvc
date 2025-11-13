@@ -55,7 +55,7 @@ spherical == 1
   cfl internal == 0.7                                             ! <Global Maximum Courant Number>
   time format == ISODATE                                          ! <Hours;ISODate>
   start time ==  02/11/2012 00:00:00                              ! <simulation start time>
-  end time   ==  31/12/2014 00:00:00                              ! <simulation stop time>
+  end time   ==  31/12/2013 00:00:00                              ! <simulation stop time>
   timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
   turbulence update dt == 300.                                    ! for GOTM (s)
   display dt == 900.                                              !
