@@ -25,144 +25,140 @@
 
 ! SIMULATION HARDWARE 
 !_________________________________________________________________
- hardware == gpu
+hardware == gpu
  
 
 ! SIMULATION CONFIGURATION
 !_________________________________________________________________
-  spherical == 1  
-  include salinity == 1,1                                         ! <0;1, 0;1> 0 for false & 1 for true
-  include temperature == 1,1                                      ! <0;1, 0;1> 0 for false & 1 for true
-  include sediment == 0,0                                         ! <0;1, 0;1> 0 for false & 1 for true
-  include heat == 1                                               ! <0;1, 0;1> 0 for false & 1 for true
-  ntracer == 0                                                    ! Number of passive tracers
+spherical == 1  
+include salinity == 1,1                                         ! <0;1, 0;1> 0 for false & 1 for true
+include temperature == 1,1                                      ! <0;1, 0;1> 0 for false & 1 for true
+include sediment == 0,0                                         ! <0;1, 0;1> 0 for false & 1 for true
+include heat == 1                                               ! <0;1, 0;1> 0 for false & 1 for true
+ntracer == 0                                                    ! Number of passive tracers
 
 
 ! TURBULENCE CONFIGURATION
 !_________________________________________________________________
-  include == ../../model_components/includes/turbulence/turbulence.fvc
+include == ../../model_components/includes/turbulence/turbulence.fvc
 
 
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
 water quality model == EXTERNAL
-  external water quality model dir == ../../model_components/includes/wq/AED_B009
+external water quality model dir == ../../model_components/includes/wq/AED_B009
 
 
 ! TIME COMMANDS
 !_________________________________________________________________
-  cfl external == 0.7                                             ! <Global Maximum Courant Number>
-  cfl internal == 0.7                                             ! <Global Maximum Courant Number>
-  time format == ISODATE                                          ! <Hours;ISODate>
-  start time ==  02/11/2012 00:00:00                              ! <simulation start time>
-  end time   ==  31/12/2013 00:00:00                              ! <simulation stop time>
-  timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
-  turbulence update dt == 300.                                    ! for GOTM (s)
-  display dt == 900.                                              !
+cfl external == 0.7                                             ! <Global Maximum Courant Number>
+cfl internal == 0.7                                             ! <Global Maximum Courant Number>
+time format == ISODATE                                          ! <Hours;ISODate>
+start time ==  02/11/2012 00:00:00                              ! <simulation start time>
+end time   ==  31/12/2013 00:00:00                              ! <simulation stop time>
+timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
+turbulence update dt == 300.                                    ! for GOTM (s)
+display dt == 900.                                              !
 
 
 ! MODEL PARAMETERS
 !_________________________________________________________________
-  stability limits == 17.0,10.0                                   ! <maximum WL, maximum velocity>
-  cell wet/dry depths == 5.0e-3, 1.0e-1                           ! <cells dry depth (m), cell wet depth (m)>
-  cell 3d depth == 1 ! 0.5                                        ! <cells where computation are 2d in case they are shallower than>
-  global bottom roughness == 0.05                                 ! <lobal roughness>
-  g == 9.81
-  reference salinity == 35.0
-  reference temperature == 20.0
-  reference density == 1030.0
-  kinematic viscosity == 1.0e-6
-  global horizontal eddy viscosity == 0.0
-  global horizontal eddy viscosity limits == 0.0, 9999.0
-  global horizontal scalar diffusivity == 0.0
-  global horizontal scalar diffusivity limits == 0.0, 9999.0
-  global vertical eddy viscosity limits == 0.0, 1.0
-  global vertical scalar diffusivity limits == 0.0, 1.0
-  Bulk Latent Heat Coefficient == 1.8e-3 ! Default 1.3e-3
+stability limits == 17.0,10.0                                   ! <maximum WL, maximum velocity>
+cell wet/dry depths == 5.0e-3, 1.0e-1                           ! <cells dry depth (m), cell wet depth (m)>
+cell 3d depth == 1 ! 0.5                                        ! <cells where computation are 2d in case they are shallower than>
+global bottom roughness == 0.05                                 ! <lobal roughness>
+g == 9.81
+reference salinity == 35.0
+reference temperature == 20.0
+reference density == 1030.0
+kinematic viscosity == 1.0e-6
+global horizontal eddy viscosity == 0.0
+global horizontal eddy viscosity limits == 0.0, 9999.0
+global horizontal scalar diffusivity == 0.0
+global horizontal scalar diffusivity limits == 0.0, 9999.0
+global vertical eddy viscosity limits == 0.0, 1.0
+global vertical scalar diffusivity limits == 0.0, 1.0
+Bulk Latent Heat Coefficient == 1.8e-3 ! Default 1.3e-3
 
 
 ! GIS PROJECTION, GEOMETRY & DOMAIN
 !_________________________________________________________________
 GIS format == shp
-  shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
+shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
  
 echo geometry == 1
-  include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
+include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
 
 
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
-  Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
+Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
 
 ! Bottom roughness:
-  include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
+include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
 
 
 !INITIAL CONDITIONS
 !_________________________________________________________________
-  Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov_B009.csv
+Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov_B009.csv
 
- !include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
- !restart file == ./log/csiem_B009_20221101_20240401_WQ.rst
- !use restart file time == 0
+!include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
+!restart file == ./log/csiem_B009_20221101_20240401_WQ.rst
+!use restart file time == 0
 
 
 ! ENVIRONMENTAL FORCING CONDITIONS 
 !_________________________________________________________________
 
 ! WEATHER  (WRF output)
-  include == ../../model_components/includes/bc/1_weather/met_BARRA_perth_20121101_20140101.fvc  
+include == ../../model_components/includes/bc/1_weather/met_BARRA_perth_20121101_20140101.fvc  
 
 ! WAVES  (WWM output)
-  include == ../../model_components/includes/bc/2_waves/wave_WWM_20121101_20140101.fvc   
+include == ../../model_components/includes/bc/2_waves/wave_WWM_20121101_20140101.fvc   
 
 ! OCEAN  (ROMS HD plus OBC_wq from 6-polygon climatology)
-  include == ../../model_components/includes/bc/3_ocean/obc_wq_20121101_20131231_6OBC_climatology.fvc   
+include == ../../model_components/includes/bc/3_ocean/obc_wq_20121101_20131231_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
-  include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
-  include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_wq.fvc
+include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
+include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_wq.fvc
 
 ! GROUNDWATER  (PRAMS output into 19 zones)
-  include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
+include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
 
 ! STORMWATER  (13 stormwater drains)
- !include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc 
+!include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc 
 
 
 ! ECOSYSTEM MODIFIERS (licensed industry activities) 
 !_________________________________________________________________
 
-  include == ../../model_modifier_library/intakes/modifier-0001a_BP/include_bp_intake_19800101_20241231.fvc
-  include == ../../model_modifier_library/discharges/modifier-0001b_BP/include_bp_discharge_19800101_20241231.fvc
-
-  include == ../../model_modifier_library/discharges/modifier-0002_WWTP/include_wwtp_discharge_19800101_20241231.fvc
-  include == ../../model_modifier_library/discharges/modifier-0003_SDOOL/include_sdool_discharge_19800101_20241231.fvc
-
-  include == ../../model_modifier_library/intakes/modifier-0004a_Verve/include_verve_intake_19800101_20241231.fvc
-  include == ../../model_modifier_library/discharges/modifier-0004b_KPS/include_kps_discharge_19800101_20241231.fvc
-
-  include == ../../model_modifier_library/discharges/modifier-0005_TiWest/include_tiwest_discharge_19800101_20241231.fvc
-
-  include == ../../model_modifier_library/intakes/modifier-0006a_PSDP/include_psdp_intake_19800101_20241231.fvc
-  include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_psdp_discharge_19800101_20241231.fvc
+include == ../../model_modifier_library/intakes/modifier-0001a_BP/include_bp_intake_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0001b_BP/include_bp_discharge_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0002_WWTP/include_wwtp_discharge_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0003_SDOOL/include_sdool_discharge_19800101_20241231.fvc
+include == ../../model_modifier_library/intakes/modifier-0004a_Verve/include_verve_intake_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0004b_KPS/include_kps_discharge_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0005_TiWest/include_tiwest_discharge_19800101_20241231.fvc
+include == ../../model_modifier_library/intakes/modifier-0006a_PSDP/include_psdp_intake_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_psdp_discharge_19800101_20241231.fvc
 
 
 ! ECOSYSTEM MODIFIERS (proposed actions) 
 !_________________________________________________________________
- !<none> 
+!<none> 
 
 
 ! OUTPUT INSTRUCTIONS
 !_________________________________________________________________
-  write check files  == ./check/
-  write restart dt   == 480
-  logdir             == log
-  output dir         == ../../output_archive/2013B/
-  include == ../../model_components/includes/output/output_wq.fvc
-  include == ../../model_components/includes/output/output_met.fvc
-  include == ../../model_components/includes/output/output_wave.fvc
- !include == ../../model_components/includes/output/output_points.fvc
- !include == ../../model_components/includes/output/output_trc.fvc
+write check files  == ./check/
+write restart dt   == 480
+logdir             == log
+output dir         == ../../output_archive/2013B/
+include == ../../model_components/includes/output/output_wq.fvc
+include == ../../model_components/includes/output/output_met.fvc
+include == ../../model_components/includes/output/output_wave.fvc
+!include == ../../model_components/includes/output/output_points.fvc
+!include == ../../model_components/includes/output/output_trc.fvc
 

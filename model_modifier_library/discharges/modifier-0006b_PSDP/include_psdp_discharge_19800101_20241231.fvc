@@ -16,9 +16,9 @@
 !# PERTH SEAWATER DESALINATION PLANT (PSDP) - Direct insertion
 !#
 bc == QC, 115.76814,-32.20014  ,  ../../../model_modifier_library/discharges/modifier-0006b_PSDP/PSDP1_19800101_20241231_wq.csv
-  bc header == Date,Q,Salt,Temp,Zeros,Ones,DO,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Zeros,Zeros,Zeros,Ones,Zeros,Zeros
-! bc name == Date,Q,Salt,Temp,TRACE1,TSS,Oxy,Amm,Nit,FRP,FRP_ads,DOC,POC,DON,PON,DOP,POP,GRN,BGA,MDIAT,DINO,TRC1,TRC2,TRC3,TRC4,AGE
-  bc scale == 1.0,1.00,1.00,1.0000,0.01,1.00,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1,1,1,1,1
+  bc header == Date,Q,Salt,Temp,Zeros,Ones,Zeros,DO,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Zeros,Zeros,Zeros,Ones,Zeros,Zeros
+! bc name == Date,Q,Salt,Temp,Age,TSS,TSS,Oxy,Amm,Nit,FRP,FRP_ads,DOC,POC,DON,PON,DOP,POP,GRN,PICO,DIAT,DINO
+  bc scale == 1.0,1.0,1.0,1.0,0.01,1.0,1.0,0.1,0.1,0.1,0.01,1.0,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1,1,1,1,1
   vertical coordinate type == height
   vertical distribution == ../../../model_modifier_library/discharges/modifier-0006b_PSDP/psdp_discharge_depth_bottom2m.csv
 end bc
