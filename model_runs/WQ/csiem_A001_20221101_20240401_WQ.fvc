@@ -93,10 +93,10 @@ include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_bud
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
-Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
+Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_WEM_benthic_zones.shp
 
 ! Bottom roughness:
-include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
+include == ../../model_components/includes/roughness/CSOA_WEM_material_zones.fvc
 
 
 !INITIAL CONDITIONS
@@ -155,7 +155,7 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/2023A/
+output dir         == ../../output_archive/2023A-wem/
 include == ../../model_components/includes/output/output_wq.fvc
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_wave.fvc

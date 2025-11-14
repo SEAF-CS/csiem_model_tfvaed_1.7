@@ -1,0 +1,91 @@
+! Spatial Order set to 1st order with spatial reconstruction == 0
+material == 1 ! Default, and Deep Water
+ bottom roughness == 0.02
+ spatial reconstruction == 0
+end material 
+
+material == 16 ! Swan
+ bottom roughness == 0.004
+ spatial reconstruction == 1
+end material
+
+material == 21 ! CS GS 1 23-31
+ bottom roughness == 0.001
+ spatial reconstruction == 1
+end material
+
+material == 22 ! CS GS 2 31-63.5
+ bottom roughness == 0.002
+ spatial reconstruction == 1
+end material
+
+material == 23 ! CS GS 3 63.5-125
+ bottom roughness == 0.004
+ spatial reconstruction == 1
+end material
+
+material == 24 ! CS GS 4 125-250
+ bottom roughness == 0.008
+ spatial reconstruction == 1
+end material
+
+material == 25 ! CS GS 5 250-350
+ bottom roughness == 0.01
+ spatial reconstruction == 1
+end material
+
+material == 26 ! CS GS 6 350-500
+ bottom roughness == 0.015
+ spatial reconstruction == 1
+end material
+
+material == 27! CS GS 7 500-1000
+ bottom roughness == 0.02
+ spatial reconstruction == 1
+end material
+
+material == 61, 62 ! soft substrate sand
+ bottom roughness == 0.008
+ spatial reconstruction == 1
+end material
+
+material == 68 ! hard substrate reef
+ bottom roughness == 0.1
+ spatial reconstruction == 1
+end material
+
+material == 69 ! cobble
+ bottom roughness == 0.05
+ spatial reconstruction == 1
+end material
+
+material == 70 ! mix substrate
+ bottom roughness == 0.05
+ spatial reconstruction == 1
+end material
+
+material == 60 ! seagrass swan river
+ bottom roughness == 0.1
+ spatial reconstruction == 1
+end material
+
+material == 90,91,92,93,94,96 ! seagrass with species info
+ bottom roughness == 0.1
+ spatial reconstruction == 1
+end material
+
+material == 59 ! artificial structure
+ bottom roughness == 0.2
+ spatial reconstruction == 1
+end material
+
+material == 98 ! seagrass restoration area
+ bottom roughness == 0.06
+ spatial reconstruction == 1
+end material
+
+material == 99 ! aquaculture lease
+ bottom roughness == 0.03
+ spatial reconstruction == 1
+end material
+
