@@ -63,7 +63,7 @@
     link_solar_shade    = .false.
     link_rain_loss      = .false.
   !-- Benthic variable initialisation
-    init_values_file    = '../../model_components/gis_repo/2_benthic/ecology/csiem_aed_benthic_map_A001_wq.csv'
+    init_values_file    = '../../model_components/gis_repo/2_benthic/ecology/csiem_aed_benthic_map_A002_wq_wem.csv'
     !route_table_file   = '../External/AED/Routing_Tbl.csv'
 /
 
@@ -92,35 +92,22 @@
 ! aed_sedflux
 !-------------------------------------------------------------------------------
 &aed_sedflux
-   sedflux_model = 'Constant2D'    ! Refer to ./gis_repo/2_benthic/material/CSOA_Ranae_SGspp_merged_reorder.shp
+   sedflux_model = 'Constant2D'    ! Refer to ./gis_repo/2_benthic/material/CSOA_WEM_benthic_zones.shp
 /
-&aed_sed_const2d	!Default,	etc
-!   n_zones  = 24 !1s->   2		3		4      5 		6    	 7      8      	9		10      11      12      13		14 		15		16		17		18		19		20		21
-!   active_zones = 1,16,21,22,23,24,25,26,27,61,68,89,70,60,66,80,81,82,83,84,85,86,87,59
-!   Fsed_oxy = 	-1,-40,-45,-40,-40,-40,-40,-40,-25,-15,0,0,-10,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,0
-!   Fsed_rsi =   0,3,3,3,3,3,3,3,3,3,0,0,3,3,3,3,3,3,3,3,3,3,3,0
-!   Fsed_frp =   0,0,0.07,0.06,0.05,0.04,0.03,0.02,0.01,0.02,0,0,-0.01,-0.06,-0.06,-0.06,-0.06,-0.06,-0.06,-0.06,-0.06,-0.06,-0.06,0
-!   Fsed_amm =   0,0,0.500,0.300,0.250,0.200,0.150,0.100,0.050,-0.10,0,0,-0.1,-0.6,-0.6,-0.6,-0.6,-0.6,-0.6,-0.6,-0.6,-0.6,-0.6,0
-!   Fsed_nit =   0,0,-0.07,-0.06,-0.05,-0.04,-0.03,-0.02,-0.01,-0.02,0,0,-0.01,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,0
-!   Fsed_doc =   0,0,40,24,20,16,12,8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-!   Fsed_don =   0,0,2.50,1.50,1.25,1.00,0.75,0.50,0.25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-!   Fsed_dop =   0,0,0.156,0.093,0.078,0.062,0.046,0.031,0.0156,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-!   Fsed_pon =   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-!   Fsed_pop =   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-!   Fsed_poc =   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-   n_zones  = 20 !1s->   2		3		4      5 		6    	 7      8      	9		10      11      12      13		14 		15		16		17		18		19		20
-   active_zones = 1,16,61,68,70,21,22,23,24,25,26,27,60,90,91,92,93,94,95,59
-   Fsed_oxy = 	0,-40,-15,0,-10,-45,-40,-40,-40,-35,-30,-25,-5,-5,-5,-5,-5,-5,-5,0
-   Fsed_rsi =   0,3,3,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0
-   Fsed_frp =   0,0.25,0.1,0,-0.02,0.3,0.2,0.2,0.2,0.1,0.1,0.1,-0.12,-0.12,-0.12,-0.12,-0.12,-0.12,-0.12,0
-   Fsed_amm =   0,0.4,0.15,0,-0.01,0.45,0.4,0.4,0.4,0.35,0.3,0.25,-0.06,-0.06,-0.06,-0.06,-0.06,-0.06,-0.06,0
-   Fsed_nit =   0,1.3,0.5,0,-0.03,1.5,1.3,1.3,1.3,1.12,1,0.8,-0.18,-0.18,-0.18,-0.18,-0.18,-0.18,-0.18,0
-   Fsed_doc =   0,-52,-20,0,0,-60,-52,-52,-52,-44.8,-40,-32,0,0,0,0,0,0,0,0
-   Fsed_don =   0,-5.2,-2,0,0,-6,-5.2,-5.2,-5.2,-4.48,-4,-3.2,0,0,0,0,0,0,0,0
-   Fsed_dop =   0,-0.4,-0.16,0,0,-0.44,-0.4,-0.4,-0.4,-0.36,-0.32,-0.24,0,0,0,0,0,0,0,0
-   Fsed_pon =   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-   Fsed_pop =   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-   Fsed_poc =   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+&aed_sed_const2d	
+   n_zones  = 21 
+   active_zones = 1,16,61,62,68,69,70,21,22,23,24,25,26,27,60,90,91,92,93,96,59
+   Fsed_oxy = 0,-40,-15,-20,-5,0,-10,-42,-39,-37,-36,-34,-30,-25,-10,-5,-5,-5,-5,-8,0
+   Fsed_rsi = 0,3,3,3,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0
+   Fsed_frp = 0,0.3,0.1,0.15,0,0,0,0.27,0.23,0.21,0.2,0.18,0.15,0.1,0.1,0.1,0.1,0.1,0.1,0.35,0
+   Fsed_amm = 0,0.45,0.15,0.15,0,0,-0.01,0.45,0.4,0.35,0.3,0.25,0.2,0.5,-0.06,-0.06,-0.06,-0.06,-0.06,0.5,0
+   Fsed_nit = 0,1.3,0.5,0.5,0,0,-0.03,0.75,0.7,0.65,0.6,0.5,0.4,0.25,-0.18,-0.18,-0.18,-0.18,-0.18,0.2,0
+   Fsed_doc = 0,-52,-20,-20,0,0,0,-60,-52,-52,-52,-44.8,-40,-32,0,0,0,0,0,0,0
+   Fsed_don = 0,-5.2,-0.8,-2,0,0,0,-6,-5.2,-5.2,-5.2,-4.48,-4,-3.2,-5,-5,-5,-5,-5,0,0
+   Fsed_dop = 0,-0.4,-0.16,-0.16,0,0,0,-0.44,-0.4,-0.4,-0.4,-0.36,-0.32,-0.24,0,0,0,0,0,0,0
+   Fsed_pon = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+   Fsed_pop = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+   Fsed_poc = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /
 
 !###############################################################################
@@ -129,7 +116,7 @@
 &aed_tracer
    !-- Optional retention time tracer
     retention_time = .true.
-   !-- Select number of tracers and their decay/sedflux/light properties
+   !-- Select number of tracers (and their decay/sedflux/light properties)
     num_tracers = 0
 /
 
@@ -138,38 +125,38 @@
 !-------------------------------------------------------------------------------
 &aed_noncohesive
    !-- Select SS groups and their light attenuation
-    num_ss       = 2
-    ss_initial   = 1,1
-    Ke_ss        = 0.028,0.043
+    num_ss              = 2
+    ss_initial          = 1,0.1
+    Ke_ss               = 0.028,0.043
    !-- Configure particle settling
-    settling     = 1
-    w_ss         = -1.95,-70.0
-    d_ss         = 2e-6,1e-5
-    rho_ss       = 1.5e3,1.8e3
+    settling            = 1
+    w_ss                = -2.95,-110.0
+    d_ss                = 2e-6,1e-5
+    rho_ss              = 1.5e3,1.8e3
    !-- Configure sediment resuspension
-    resuspension = 2
-    epsilon      = 0.03 !0.0070
-    tau_0        = 0.08, 0.15 !0.03, 0.03
-    tau_r        = 1.0
-    Ktau_0       = 0.00001
+    resuspension        = 2
+    epsilon             = 0.04 !0.0070
+    tau_0               = 0.1, 0.15 !0.03, 0.03
+    tau_r               = 1.0
+    Ktau_0              = 0.00001
     macrophyte_link_var = 'MAC_mac_ag'
    !-- Configure sediment mass
-    simSedimentMass = .true.
-    fs              = 0.1,0.9
-    sed_porosity    = 0.6
+    simSedimentMass     = .true.
+    fs                  = 0.1,0.9           ! overwritten by aed_benthic_map.csv
+    sed_porosity        = 0.6
 /
 
 !###############################################################################
 ! OXY: aed_oxygen - AED oxygen model
 !-------------------------------------------------------------------------------
 &aed_oxygen
-   oxy_min           =   0.0
-   oxy_max           = 500.0
-   oxy_initial       = 225.0
-   Fsed_oxy          = -50.0
-   Ksed_oxy          = 100.0
-   theta_sed_oxy     =   1.08
-   Fsed_oxy_variable = 'SDF_Fsed_oxy'   ! Link to SDF 19 zones
+   oxy_min              =   0.0
+   oxy_max              = 500.0
+   oxy_initial          = 225.0
+   Fsed_oxy             = -50.0
+   Ksed_oxy             = 100.0
+   theta_sed_oxy        =   1.08
+   Fsed_oxy_variable = 'SDF_Fsed_oxy'       ! Link to SDF 21 zones
 /
 
 !###############################################################################
@@ -220,22 +207,22 @@
    Rdnra = 0.01,
    Kdnra_oxy = 2.0,
   !-- Sediment fluxes
-   Fsed_amm =   3.5
-   Ksed_amm =  25.0
-   Fsed_nit =  -4.5
-   Ksed_nit = 100.0
-   Fsed_n2o =   0.0
-   Ksed_n2o = 100.0
-   theta_sed_amm = 1.08
-   theta_sed_nit = 1.08
+   Fsed_amm          =   3.5
+   Ksed_amm          =  25.0
+   Fsed_nit          =  -4.5
+   Ksed_nit          = 100.0
+   Fsed_n2o          =   0.0
+   Ksed_n2o          = 100.0
+   theta_sed_amm     = 1.08
+   theta_sed_nit     = 1.08
    Fsed_amm_variable = 'SDF_Fsed_amm'
    Fsed_nit_variable = 'SDF_Fsed_nit'
   !Fsed_n2o_variable = 'SDF_Fsed_n2o'
   !-- Atmospheric deposition
-    simDryDeposition = .false.
-    atm_din_dd       = 0.05
-    simWetDeposition = .true.
-    atm_din_conc     = 10.0
+   simDryDeposition = .false.
+   atm_din_dd       = 0.05
+   simWetDeposition = .true.
+   atm_din_conc     = 10.0
 /
 
 !###############################################################################
@@ -329,7 +316,7 @@
 
     !-- Particle settling parameters
      settling     =  1
-     w_pom        = -0.86
+     w_pom        = -0.98
      d_pom        =  1e-5
      rho_pom      = 1.2e3
      w_cpom       = -0.01
@@ -340,9 +327,9 @@
      resuspension = 2
      resus_link   = 'NCS_resus'
      sedimentOMfrac = 0.0050
-     Xsc = 0.3
-     Xsn = 0.04
-     Xsp = 0.001
+     Xsc = 0.25
+     Xsn = 0.018
+     Xsp = 0.0007
      Fsed_doc = 0.0
      Fsed_don = 0.0
      Fsed_dop = 0.0
@@ -366,20 +353,17 @@
      settling     =   1,1,1,4
    !-- Benthic phytoplankton group (microphytobenthos)
      do_mpb       =   1
-     R_mpbg       =   0.90
+     R_mpbg       =   0.85
      R_mpbr       =   0.12
 	   R_mpbb       =   0.11 
-     I_Kmpb       =   100.00
+     I_Kmpb       =   100.00 ! W/m2)
      mpb_max      =   720.00 ! based on Eyre et al (2024), mean CHLa 110 mg/m2 in shallow water, Xcc=40
 	   theta_mpb_growth = 1.02
 	   theta_mpb_resp   = 1.02
 	   resuspension =   0.0005,0.001,0.0005,0.00
      resus_link   =  'NCS_resus'
-!     n_zones      =   18
-!     active_zones =   1,16,61,   70,21,22,23,24,25,26,27,60,90,91,92,93,94,95
-!     active_zones =   1,16,61,68,70,21,22,23,24,25,26,27,60,90,91,92,93,94,95,59
-     n_zones      =   16
-     active_zones =  16,21,22,23,24,25,26,27,61,60,90,91,92,93,94,95
+     n_zones      =   20
+     active_zones =   16,21,22,23,24,25,26,27,59,60,61,62,68,69,70,90,91,92,93,96
 
    !-- Set link variables to other modules
      p_excretion_target_variable ='OGM_dop'
@@ -435,7 +419,7 @@
 !-------------------------------------------------------------------------------
 &aed_zooplankton
    num_zoops = 1
-   the_zoops = 1,2 !2,3
+   the_zoops = 1,2 
    dn_target_variable='OGM_don'  ! dissolved nitrogen target variable
    pn_target_variable='OGM_pon'  ! particulate nitrogen target variable
    dp_target_variable='OGM_dop'  ! dissolved phosphorus target variable
@@ -496,19 +480,19 @@
 !-------------------------------------------------------------------------------
 &aed_macrophyte
  !# Macrophyte community 
-   num_mphy         = 5
-   the_mphy         = 1,2,3,4,5
+   num_mphy         = 6
+   the_mphy         = 1,2,3,4,5,6
    n_zones          = 5
-   active_zones     = 60,90,91,92,93 ! Refer to ../gis_repo/2_benthic/ (also check zone_lock)
+   active_zones     = 60,90,91,92,93,96 ! Refer to ../gis_repo/2_benthic/ (also check zone_lock)
    dbase            = '../../model_components/includes/wq-eco/aed_macrophyte_pars.csv'
    mac_initial      = 1  ! use 4 to intiialise from benthic file
  !# Epiphytes
    simEpiphytes = .true. ! .false. !
    epi_model = 1
-   R_epig = 0.1
+   R_epig = 0.2
    R_epib = 0.
    I_Kepi = 100.
-   epi_max = 10000.
+   epi_max = 1000.
    epi_Xnc = 0.1
    epi_Xpc = 0.01
    epi_K_N = 10.
@@ -523,21 +507,6 @@
    simMacDrag       = .false.
    diag_level       = 2
    water_nutrient_frac = 0.5 ! percentage of N&P that plants get from water-column
-
- !  num_mphy         = 1
- !  the_mphy         = 1
- !  n_zones          = 5 
- !  active_zones     = 60,90,91,92,93                 ! Refer to ../gis_repo/2_benthic/material/CSOA_theme21_benthic_zones_final.shp
- ! !active_zones     = 16,60,66,80,81,82,83,84,85,86,87                 ! Refer to ../gis_repo/2_benthic/material/CSOA_Ranae_SGspp_merged_reorder.shp
- !  simStaticBiomass = .false.
- !  simMacFeedback   = .false.
- !  simEpiphytes     = .false.
- !  epi_model        = 0
- !  simFruiting      = .true.
- !  simMacDrag       = .false.
- !  mac_initial      = 4 !1
- !  diag_level       = 10
- !  dbase            = '../../model_components/includes/wq-eco/aed_macrophyte_pars.csv'
 /
 
 !###############################################################################
@@ -551,7 +520,7 @@
    dbase           = '../../model_components/includes/wq-eco/aed_malgae_pars.csv'
    settling        = 0
    n_zones         = 3
-   active_zones    = 59,68,94
+   active_zones    = 59,68,69
   !-- benthic sloughing & detachment
    simSloughing    =  0                      ! CGM sloughing based on decay
    slough_model    =  0                      ! CGM trigger value for sloughing
@@ -589,8 +558,8 @@
    X_c = 1.
    dbase = '../../model_components/includes/wq-eco/aed_bivalve_pars.nml'
   !--[ benthic setup ]--!
-   n_zones = 14
-   active_zones = 61,21,22,23,24,25,26,27,90,91,92,93,94,95 
+   n_zones = 15
+   active_zones = 21,22,23,24,25,26,27,61,62,69,70,90,91,92,93 
    initFromDensity = .false. !.true.
   !--[ bivalve filtration tracer ]--!
    simBivTracer = .true.
