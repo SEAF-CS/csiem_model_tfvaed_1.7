@@ -18,7 +18,7 @@
 !#
 bc == QC,115.770454,-32.200828, ../../../model_modifier_library/intakes/modifier-0006a_PSDP/PSDP1_19800101_20241231_wq.csv
   bc header == Date, Q
-  bc scale  ==  -1.636
+  bc scale  ==  -1.7 !scaling so the intake is 4.25 m3/sec
   vertical coordinate type == height
   vertical distribution    == ../../../model_modifier_library/intakes/modifier-0006a_PSDP/psdp_intake_extraction_height.csv
 end bc
