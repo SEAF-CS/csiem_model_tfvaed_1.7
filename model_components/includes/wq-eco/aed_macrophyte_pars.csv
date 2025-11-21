@@ -1,4 +1,4 @@
-m_name,'halophila','amphibolis','p-australis','p-coriacea','p-sinuosa','p-sinuosa'
+m_name,'halo-swan','amphibolis','p-australis','p-coriacea','p-sinuosa','halo-sparse'
 growth_form,1,1,1,1,1,1
 zone_lock,60,90,91,92,93,96
 m_initial,6000,28000,28000,28000,28000,5000
@@ -19,9 +19,9 @@ sine_blade,0.5,0.5,0.5,0.5,0.5,0.5
 X_ldw,0.5,0.5,0.5,0.5,0.5,0.5
 K_ldw,0.5,0.5,0.5,0.5,0.5,0.5
 X_sdw,3.39,3.39,3.39,3.39,3.39,3.39
-R_growth,0.2,0.2,0.2,0.2,0.2,0.2
+R_growth,0.2,0.2,0.2,0.2,0.4,0.2
 temp_method,1,1,1,1,1,1
-theta_growth,1.035,1.035,1.035,1.035,1.035,1.035
+theta_growth,1.035,1.035,1.035,1.035,1.04,1.035
 T_std,20,20,20,20,20,20
 T_opt,28,28,28,28,28,28
 T_max,38,38,38,38,38,38

@@ -97,17 +97,18 @@
 &aed_sed_const2d	
    n_zones  = 21 
    active_zones = 1,16,61,62,68,69,70,21,22,23,24,25,26,27,60,90,91,92,93,96,59
-   Fsed_oxy = 0,-40,-15,-20,-5,0,-10,-42,-39,-37,-36,-34,-30,-25,-10,-5,-5,-5,-5,-8,0
+   Fsed_oxy = 0,-40,-15,-20,-5,0,-10,-42,-39,-37,-36,-34,-30,-25,-13,-12,-12,-12,-17,-20,-10
    Fsed_rsi = 0,3,3,3,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0
-   Fsed_frp = 0,0.3,0.1,0.15,0,0,0,0.27,0.23,0.21,0.2,0.18,0.15,0.1,0.1,0.1,0.1,0.1,0.1,0.35,0
-   Fsed_amm = 0,0.45,0.15,0.15,0,0,-0.01,0.45,0.4,0.35,0.3,0.25,0.2,0.5,-0.06,-0.06,-0.06,-0.06,-0.06,0.5,0
-   Fsed_nit = 0,1.3,0.5,0.5,0,0,-0.03,0.75,0.7,0.65,0.6,0.5,0.4,0.25,-0.18,-0.18,-0.18,-0.18,-0.18,0.2,0
-   Fsed_doc = 0,-52,-20,-20,0,0,0,-60,-52,-52,-52,-44.8,-40,-32,0,0,0,0,0,0,0
-   Fsed_don = 0,-5.2,-0.8,-2,0,0,0,-6,-5.2,-5.2,-5.2,-4.48,-4,-3.2,-5,-5,-5,-5,-5,0,0
-   Fsed_dop = 0,-0.4,-0.16,-0.16,0,0,0,-0.44,-0.4,-0.4,-0.4,-0.36,-0.32,-0.24,0,0,0,0,0,0,0
+   Fsed_frp = 0,0.4,0.1,0.15,0,0,0,0.29,0.28,0.24,0.21,0.18,0.15,0.2,0.1,0.1,0.1,0.1,0.25,0.35,0
+   Fsed_amm = 0,0.55,0.15,0.15,0,0,-0.01,0.49,0.44,0.35,0.3,0.25,0.2,0.5,0.06,0.06,0.06,0.06,0.06,0.5,0
+   Fsed_nit = 0,1.3,0.5,0.5,0,0,-0.03,0.75,0.72,0.68,0.6,0.5,0.4,0.45,0.2,0.1,0.1,0.1,0.1,0.2,0
+   Fsed_doc = 0,52,-20,-20,0,0,0,-60,-52,-52,-52,-44.8,-40,-32,0,0,0,0,0,0,0
+   Fsed_don = 0,1.2,-0.8,-2,0,0,0,-6,-5.2,-5.2,-5.2,-4.48,-4,-3.2,-5,-5,-5,-5,-5,0,0
+   Fsed_dop = 0,0.4,-0.16,-0.16,0,0,0,-0.04,-0.2,-0.1,-0.4,-0.36,-0.32,-0.24,0,0,0,0,0,0,0
    Fsed_pon = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
    Fsed_pop = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
    Fsed_poc = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+   Ktau_0  = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.1,1.0,0.8,0.5,0.5,0.05,0.1
 /
 
 !###############################################################################
@@ -127,19 +128,19 @@
    !-- Select SS groups and their light attenuation
     num_ss              = 2
     ss_initial          = 1,0.1
-    Ke_ss               = 0.028,0.043
+    Ke_ss               = 0.085, 0.045 
    !-- Configure particle settling
     settling            = 1
-    w_ss                = -2.95,-110.0
+    w_ss                = -2.55,-110.0
     d_ss                = 2e-6,1e-5
     rho_ss              = 1.5e3,1.8e3
    !-- Configure sediment resuspension
-    resuspension        = 2
-    epsilon             = 0.04 !0.0070
-    tau_0               = 0.1, 0.15 !0.03, 0.03
+    resuspension        = 3
+    epsilon             = 0.05 
+    tau_0               = 0.081, 0.11 
     tau_r               = 1.0
-    Ktau_0              = 0.00001
-    macrophyte_link_var = 'MAC_mac_ag'
+    Ktau_0              = 0.00001 
+    macrophyte_link_var = 'SDF_Ktau_0'
    !-- Configure sediment mass
     simSedimentMass     = .true.
     fs                  = 0.1,0.9           ! overwritten by aed_benthic_map.csv
@@ -155,7 +156,7 @@
    oxy_initial          = 225.0
    Fsed_oxy             = -50.0
    Ksed_oxy             = 100.0
-   theta_sed_oxy        =   1.08
+   theta_sed_oxy        =   1.10
    Fsed_oxy_variable = 'SDF_Fsed_oxy'       ! Link to SDF 21 zones
 /
 
@@ -268,7 +269,7 @@
      cpom_initial = 100.0
    !-- Breakdown and mineralisation (basic pool)
      Rdom_minerl  =   0.008
-     Rpoc_hydrol  =   0.005
+     Rpoc_hydrol  =   0.006
      Rdoc_minerl  =   0.001
      Rpon_hydrol  =   0.005
      Rdon_minerl  =   0.001
@@ -306,7 +307,7 @@
      X_cpom_p     = 0.0001
 
     !-- Light related parameters
-     KeDOM         = 0.000005
+     KeDOM         = 0.0005
      KePOM         = 0.00096
      KeDOMR        = 0.10000    ! = 1 (assuming KeDOMR is applied to CDOM in /m)
      KeCPOM        = 0.00096    ! = 0.08 (/m)/(mg/L)  /83.3  (mmol/m3)/(mg/L)
@@ -316,7 +317,7 @@
 
     !-- Particle settling parameters
      settling     =  1
-     w_pom        = -0.98
+     w_pom        = -0.88
      d_pom        =  1e-5
      rho_pom      = 1.2e3
      w_cpom       = -0.01
@@ -327,7 +328,7 @@
      resuspension = 2
      resus_link   = 'NCS_resus'
      sedimentOMfrac = 0.0050
-     Xsc = 0.25
+     Xsc = 0.21
      Xsn = 0.018
      Xsp = 0.0007
      Fsed_doc = 0.0
@@ -353,14 +354,14 @@
      settling     =   1,1,1,4
    !-- Benthic phytoplankton group (microphytobenthos)
      do_mpb       =   1
-     R_mpbg       =   0.85
+     R_mpbg       =   0.80
      R_mpbr       =   0.12
-	   R_mpbb       =   0.11 
+	   R_mpbb       =   0.10 
      I_Kmpb       =   100.00 ! W/m2)
      mpb_max      =   720.00 ! based on Eyre et al (2024), mean CHLa 110 mg/m2 in shallow water, Xcc=40
 	   theta_mpb_growth = 1.02
 	   theta_mpb_resp   = 1.02
-	   resuspension =   0.0005,0.001,0.0005,0.00
+	   resuspension =   0.001,0.001,0.002,0.00
      resus_link   =  'NCS_resus'
      n_zones      =   20
      active_zones =   16,21,22,23,24,25,26,27,59,60,61,62,68,69,70,90,91,92,93,96
@@ -482,10 +483,10 @@
  !# Macrophyte community 
    num_mphy         = 6
    the_mphy         = 1,2,3,4,5,6
-   n_zones          = 5
+   n_zones          = 6
    active_zones     = 60,90,91,92,93,96 ! Refer to ../gis_repo/2_benthic/ (also check zone_lock)
    dbase            = '../../model_components/includes/wq-eco/aed_macrophyte_pars.csv'
-   mac_initial      = 1  ! use 4 to intiialise from benthic file
+   mac_initial      = 1  ! use 4 to initialise from benthic file
  !# Epiphytes
    simEpiphytes = .true. ! .false. !
    epi_model = 1
@@ -499,14 +500,15 @@
    epi_K_P = 1.0
    theta_epi_growth =1.08
    theta_epi_resp = 1.06
-   epi_initial = 0.1
+   epi_initial = 0.15
  !# Advanced options
    simStaticBiomass = .false.
-   simMacFeedback   = .false. !.true.
+   simMacFeedback   = .true.
    simFruiting      = .true.
    simMacDrag       = .false.
    diag_level       = 2
-   water_nutrient_frac = 0.5 ! percentage of N&P that plants get from water-column
+   water_nutrient_frac = 0.18 ! fraction of N&P that plants get from water-column
+   water_excr_frac = 0.24     ! fraction of N&P that plants excrete to water-column
 /
 
 !###############################################################################
