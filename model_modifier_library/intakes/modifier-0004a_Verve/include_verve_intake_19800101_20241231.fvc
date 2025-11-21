@@ -18,7 +18,7 @@
 !#
 bc == QC, 115.770804,-32.198633  ,  ../../../model_modifier_library/intakes/modifier-0004a_Verve/PRP_VerveSouth_19800101_20241231.csv 
   bc header == DATE,Q
-  bc scale  ==   -1.0
+  bc scale  ==   -0.34
   vertical coordinate type == height
   vertical distribution    == ../../../model_modifier_library/intakes/modifier-0004a_Verve/verve_intake_extraction_height.csv
 end bc
@@ -27,7 +27,7 @@ end bc
 !#
 bc == QC, 115.771757,-32.196188  ,  ../../../model_modifier_library/intakes/modifier-0004a_Verve/PRP_VerveNorth_19800101_20241231.csv
   bc header == DATE,Q
-  bc scale  ==   -1.0
+  bc scale  ==   -1.6
   vertical coordinate type == height
   vertical distribution    == ../../../model_modifier_library/intakes/modifier-0004a_Verve/verve_intake_extraction_height.csv
 end bc

@@ -18,7 +18,7 @@
 bc == QC, 115.772514,-32.197657  ,  ../../../model_modifier_library/discharges/modifier-0004b_KPS/KPS_A_B_19800101_20241231_wq.csv
   bc header == Date,Q,Salt,Temp,Zeros,Ones,Zeros,DO,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Zeros,Zeros,Zeros,Ones,Zeros,Zeros
 ! bc name == Date,Q,Salt,Temp,Age,TSS,TSS,Oxy,Amm,Nit,FRP,FRP_ads,DOC,POC,DON,PON,DOP,POP,GRN,PICO,DIAT,DINO
-  bc scale == 1.0,1.0,1.0,1.0,0.01,1.0,1.0,0.1,0.1,0.1,0.01,1.0,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1,1,1,1,1
+  bc scale == 0.28,1.0,1.0,1.0,0.01,1.0,1.0,0.1,0.1,0.1,0.01,1.0,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1,1,1,1,1
   vertical coordinate type == depth
   vertical distribution == ../../../model_modifier_library/discharges/modifier-0004b_KPS/kps_discharge_depth_surface1m.csv
 end bc
@@ -28,7 +28,7 @@ end bc
 bc == QC, 115.772244,-32.198198  ,  ../../../model_modifier_library/discharges/modifier-0004b_KPS/KPS_C_CPS_19800101_20241231_wq.csv
   bc header == Date,Q,Salt,Temp,Zeros,Ones,Zeros,DO,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Zeros,Zeros,Zeros,Ones,Zeros,Zeros
 ! bc name == Date,Q,Salt,Temp,Age,TSS,TSS,Oxy,Amm,Nit,FRP,FRP_ads,DOC,POC,DON,PON,DOP,POP,GRN,PICO,DIAT,DINO
-  bc scale == 1.0,1.0,1.0,1.0,0.01,1.0,1.0,0.1,0.1,0.1,0.01,1.0,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1,1,1,1,1
+  bc scale == 0.49,1.0,1.0,1.0,0.01,1.0,1.0,0.1,0.1,0.1,0.01,1.0,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1,1,1,1,1
   bc default == 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   vertical coordinate type == depth
   vertical distribution == ../../../model_modifier_library/discharges/modifier-0004b_KPS/kps_discharge_depth_surface1m.csv
