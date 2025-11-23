@@ -46,7 +46,7 @@ include == ../../model_components/includes/turbulence/turbulence.fvc
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
 water quality model == EXTERNAL
-external water quality model dir == ../../model_components/includes/wq/AED_A001
+external water quality model dir == ../../model_components/includes/wq/AED_A002
 
 
 ! TIME COMMANDS

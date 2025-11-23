@@ -1,22 +1,13 @@
-! CONFIGURATION -------------------------------------------------!
-!               _____  _____ _____ ______ __  __                 !
-!              / ____|/ ____|_   _|  ____|  \/  |                !
-!             | |    | (___   | | | |__  | \  / |                !
-!             | |     \___ \  | | |  __| | |\/| |                !
-!             | |____ ____) |_| |_| |____| |  | |                !
-!              \_____|_____/|_____|______|_|  |_|                !
-!                                                                !
-!      CONFIGURATION file for setting up a simulation of the     !
-!        Cockburn Sound Integrated Ecosystem Model (CSIEM)       !
-!                                                                !
 !________________________________________________________________!
+!                                                                !
+! COCKBURN SOUND INTEGRATED ECOSYSTEM MODEL (CSIEM)              !
 !                                                                !
 ! CSIEM 3D Hydrodynamic-Biogeochemical simulation                !
 !                                                                !
-! TUFLOW-FV Control File                                         !
+! TUFLOW-FV Configuration File                                   !
 !                                                                !
-! Developed as part of the WAMSI-Westport Marine Science Program !
-! Date 21/06/2025                                                !
+! Developed as part of the WAMSI Westport Marine Science Program !
+! Date 01/02/2025                                                !
 !                                                                !
 ! This simulation focus: Nov/12-Dec/2013 period with WQ          !                        
 ! AED model configuration including nutrients and bio            !
@@ -46,7 +37,7 @@ include == ../../model_components/includes/turbulence/turbulence.fvc
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
 water quality model == EXTERNAL
-external water quality model dir == ../../model_components/includes/wq/AED_B009
+external water quality model dir == ../../model_components/includes/wq/AED_A002
 
 
 ! TIME COMMANDS
@@ -87,29 +78,30 @@ GIS format == shp
 shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
  
 echo geometry == 1
-include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
+include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_budgeting_6OBC.fvc
 
 
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
-Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
+Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_WEM_benthic_zones.shp
 
 ! Bottom roughness:
-include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
+include == ../../model_components/includes/roughness/CSOA_WEM_material_zones.fvc
 
 
 !INITIAL CONDITIONS
 !_________________________________________________________________
-Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov_B009.csv
+Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov.csv
 
 !include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
-!restart file == ./log/csiem_B009_20221101_20240401_WQ.rst
+!restart file == ./log/csiem_A001_20221101_20240401_WQ.rst
 !use restart file time == 0
 
 
 ! ENVIRONMENTAL FORCING CONDITIONS 
 !_________________________________________________________________
+!Global Temporal Extrapolation Check == WARNING                    !check for TUFLOW FV 2025.2.1
 
 ! WEATHER  (WRF output)
 include == ../../model_components/includes/bc/1_weather/met_BARRA_perth_20121101_20140101.fvc  
@@ -155,10 +147,9 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/2013B/
+output dir         == ../../output_archive/2013A/
 include == ../../model_components/includes/output/output_wq.fvc
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_wave.fvc
 !include == ../../model_components/includes/output/output_points.fvc
 !include == ../../model_components/includes/output/output_trc.fvc
-

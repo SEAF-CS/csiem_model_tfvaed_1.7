@@ -18,7 +18,7 @@
 ! Developed as part of the WAMSI-Westport Marine Science Program !
 ! Date 01/08/2025                                                !
 !                                                                !
-! This simulation focus: Nov/20-Dec/2021 period with WQ          !                        
+! This simulation focus: Nov/18-Mar/2019 period with WQ          !                        
 ! AED model configuration including nutrients and bio            !
 !________________________________________________________________!
 
@@ -46,7 +46,7 @@ include == ../../model_components/includes/turbulence/turbulence.fvc
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
 water quality model == EXTERNAL
-external water quality model dir == ../../model_components/includes/wq/AED_A001
+external water quality model dir == ../../model_components/includes/wq/AED_A002
 
 
 ! TIME COMMANDS
@@ -54,8 +54,8 @@ external water quality model dir == ../../model_components/includes/wq/AED_A001
 cfl external == 0.7                                             ! <Global Maximum Courant Number>
 cfl internal == 0.7                                             ! <Global Maximum Courant Number>
 time format == ISODATE                                          ! <Hours;ISODate>
-start time ==  02/11/2020 00:00:00                              ! <simulation start time>
-end time   ==  31/12/2021 00:00:00                              ! <simulation stop time>
+start time ==  02/11/2018 00:00:00                              ! <simulation start time>
+end time   ==  31/12/2019 00:00:00                              ! <simulation stop time>
 timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
 turbulence update dt == 300.                                    ! for GOTM (s)
 display dt == 900.                                              !
@@ -93,10 +93,10 @@ include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_bud
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
-Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
+Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_WEM_benthic_zones.shp
 
 ! Bottom roughness:
-include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
+include == ../../model_components/includes/roughness/CSOA_WEM_material_zones.fvc
 
 
 !INITIAL CONDITIONS
@@ -112,13 +112,13 @@ Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D
 !_________________________________________________________________
 
 ! WEATHER  (WRF output)
-include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20201101_20211231.fvc  
+include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20181101_20191231.fvc  
 
 ! WAVES  (WWM output)
-include == ../../model_components/includes/bc/2_waves/wave_WWM_20201101_20220101.fvc   
+include == ../../model_components/includes/bc/2_waves/wave_WWM_20181101_20200101.fvc   
 
 ! OCEAN  (ROMS HD plus OBC_wq from 6-polygon climatology)
-include == ../../model_components/includes/bc/3_ocean/obc_wq_20201101_20211231_6OBC_climatology.fvc   
+include == ../../model_components/includes/bc/3_ocean/obc_wq_20181001_20191231_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
 include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
@@ -134,8 +134,8 @@ include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241
 ! ECOSYSTEM MODIFIERS (licensed industry activities) 
 !_________________________________________________________________
 
-!include == ../../model_modifier_library/intakes/modifier-0001a_BP/include_bp_intake_19800101_20241231.fvc !BP disconitued
-!include == ../../model_modifier_library/discharges/modifier-0001b_BP/include_bp_discharge_19800101_20241231.fvc!BP disconitued
+include == ../../model_modifier_library/intakes/modifier-0001a_BP/include_bp_intake_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0001b_BP/include_bp_discharge_19800101_20241231.fvc
 include == ../../model_modifier_library/discharges/modifier-0002_WWTP/include_wwtp_discharge_19800101_20241231.fvc
 include == ../../model_modifier_library/discharges/modifier-0003_SDOOL/include_sdool_discharge_19800101_20241231.fvc
 include == ../../model_modifier_library/intakes/modifier-0004a_Verve/include_verve_intake_19800101_20241231.fvc
@@ -155,9 +155,10 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/2021A/
+output dir         == ../../output_archive/2019A/
 include == ../../model_components/includes/output/output_wq.fvc
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_wave.fvc
 !include == ../../model_components/includes/output/output_points.fvc
 !include == ../../model_components/includes/output/output_trc.fvc
+

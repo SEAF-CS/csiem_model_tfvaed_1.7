@@ -16,10 +16,10 @@
 ! TUFLOW-FV Control File                                         !
 !                                                                !
 ! Developed as part of the WAMSI-Westport Marine Science Program !
-! Date 21/06/2023                                                !
+! Date 01/08/2025                                                !
 !                                                                !
-! This simulation focus: Jan 2023 - March 2024 period with WQ    !                        
-! AED model configuration including nutrients and five phytos    !
+! This simulation focus: Nov/21-Dec/2022 period with WQ          !                        
+! AED model configuration including nutrients and bio            !
 !________________________________________________________________!
 
 
@@ -46,7 +46,7 @@ include == ../../model_components/includes/turbulence/turbulence.fvc
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
 water quality model == EXTERNAL
-external water quality model dir == ../../model_components/includes/wq/AED_B009
+external water quality model dir == ../../model_components/includes/wq/AED_A002
 
 
 ! TIME COMMANDS
@@ -54,8 +54,8 @@ external water quality model dir == ../../model_components/includes/wq/AED_B009
 cfl external == 0.7                                             ! <Global Maximum Courant Number>
 cfl internal == 0.7                                             ! <Global Maximum Courant Number>
 time format == ISODATE                                          ! <Hours;ISODate>
-start time ==  02/11/2022 00:00:00                              ! <simulation start time>
-end time   ==  31/03/2024 00:00:00                              ! <simulation stop time>
+start time ==  02/11/2021 00:00:00                              ! <simulation start time>
+end time   ==  31/12/2022 00:00:00                              ! <simulation stop time>
 timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
 turbulence update dt == 300.                                    ! for GOTM (s)
 display dt == 900.                                              !
@@ -87,24 +87,24 @@ GIS format == shp
 shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
  
 echo geometry == 1
-include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
+include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_budgeting_6OBC.fvc
 
 
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
-Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
+Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_WEM_benthic_zones.shp
 
 ! Bottom roughness:
-include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
+include == ../../model_components/includes/roughness/CSOA_WEM_material_zones.fvc
 
 
 !INITIAL CONDITIONS
 !_________________________________________________________________
-Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov_B009.csv
+Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov.csv
 
 !include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
-!restart file == ./log/csiem_B009_20221101_20240401_WQ.rst
+!restart file == ./log/csiem_A001_20221101_20240401_WQ.rst
 !use restart file time == 0
 
 
@@ -112,13 +112,13 @@ Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D
 !_________________________________________________________________
 
 ! WEATHER  (WRF output)
-include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20221101_20240431.fvc  
+include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20211101_20221231.fvc  
 
 ! WAVES  (WWM output)
-include == ../../model_components/includes/bc/2_waves/wave_WWM_20221101_20240331.fvc   
+include == ../../model_components/includes/bc/2_waves/wave_WWM_20211101_20221231.fvc   
 
 ! OCEAN  (ROMS HD plus OBC_wq from 6-polygon climatology)
-include == ../../model_components/includes/bc/3_ocean/obc_wq_20221001_20240331_6OBC_climatology.fvc   
+include == ../../model_components/includes/bc/3_ocean/obc_wq_20211001_20221231_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
 include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
@@ -155,7 +155,7 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/2023B/
+output dir         == ../../output_archive/2022A/
 include == ../../model_components/includes/output/output_wq.fvc
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_wave.fvc

@@ -1,14 +1,14 @@
 !output dir == ../../../output_archive/results !Scratch 1
 
 output == points
-	output points file == ..\..\includes/output/CSound_pts_002.csv									! Check for different season scenarios
+	output points file == ../../gis_repo/3_output/points/points_csound_2013_validation.csv							! Check for different season scenarios
 	vertical averaging == sigma-range, 0, 1
-	output parameters == H,V,TEMP,SAL,WQ_OGM_POC,WQ_DIAG_OGM_CDOM,WQ_DIAG_PHY_TPHY,WQ_DIAG_TOT_TOC,WQ_DIAG_TOT_TSS,WQ_DIAG_TOT_TURBIDITY,WQ_DIAG_TOT_LIGHT,WQ_DIAG_TOT_PAR,WQ_DIAG_TOT_UV,WQ_DIAG_TOT_EXTC
+	Output parameters == H,V,TEMP,SAL,WQ_OXY_OXY,WQ_OGM_POC,WQ_DIAG_PHY_TCHLA,WQ_DIAG_TOT_TSS,WQ_DIAG_TOT_TURBIDITY,WQ_DIAG_TOT_PAR,WQ_DIAG_TOT_EXTC
 	output interval == 900. ! (s)
 End output
 
 Output == profiles
-	output points file == ..\..\includes/output/CSound_pts_002.csv       							! Check for different season scenarios
-	Output parameters == H,V,TEMP,SAL,WQ_OGM_POC,WQ_DIAG_OGM_CDOM,WQ_DIAG_PHY_TPHY,WQ_DIAG_TOT_TOC,WQ_DIAG_TOT_TSS,WQ_DIAG_TOT_TURBIDITY,WQ_DIAG_TOT_LIGHT,WQ_DIAG_TOT_PAR,WQ_DIAG_TOT_UV,WQ_DIAG_TOT_EXTC
+	output points file == ../../gis_repo/3_output/points/points_csound_2013_validation.csv							! Check for different season scenarios
+	Output parameters == H,V,TEMP,SAL,WQ_OXY_OXY,WQ_OGM_POC,WQ_DIAG_PHY_TCHLA,WQ_DIAG_TOT_TSS,WQ_DIAG_TOT_TURBIDITY,WQ_DIAG_TOT_PAR,WQ_DIAG_TOT_EXTC
 	Output interval == 900. !(s)
 End output

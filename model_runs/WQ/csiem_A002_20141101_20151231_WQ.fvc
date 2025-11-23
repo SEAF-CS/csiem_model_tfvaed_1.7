@@ -1,15 +1,24 @@
-!________________________________________________________________!
+! CONFIGURATION -------------------------------------------------!
+!               _____  _____ _____ ______ __  __                 !
+!              / ____|/ ____|_   _|  ____|  \/  |                !
+!             | |    | (___   | | | |__  | \  / |                !
+!             | |     \___ \  | | |  __| | |\/| |                !
+!             | |____ ____) |_| |_| |____| |  | |                !
+!              \_____|_____/|_____|______|_|  |_|                !
 !                                                                !
-! COCKBURN SOUND INTEGRATED ECOSYSTEM MODEL (CSIEM)              !
+!      CONFIGURATION file for setting up a simulation of the     !
+!        Cockburn Sound Integrated Ecosystem Model (CSIEM)       !
+!                                                                !
+!________________________________________________________________!
 !                                                                !
 ! CSIEM 3D Hydrodynamic-Biogeochemical simulation                !
 !                                                                !
-! TUFLOW-FV Configuration File                                   !
+! TUFLOW-FV Control File                                         !
 !                                                                !
-! Developed as part of the WAMSI Westport Marine Science Program !
-! Date 01/02/2025                                                !
+! Developed as part of the WAMSI-Westport Marine Science Program !
+! Date 01/08/2025                                                !
 !                                                                !
-! This simulation focus: Nov/12-Dec/2013 period with WQ          !                        
+! This simulation focus: Nov/14-Dec/2015 period with WQ          !                        
 ! AED model configuration including nutrients and bio            !
 !________________________________________________________________!
 
@@ -37,7 +46,7 @@ include == ../../model_components/includes/turbulence/turbulence.fvc
 ! WATER QUALITY & ECOLOGY 
 !_________________________________________________________________
 water quality model == EXTERNAL
-external water quality model dir == ../../model_components/includes/wq/AED_A001
+external water quality model dir == ../../model_components/includes/wq/AED_A002
 
 
 ! TIME COMMANDS
@@ -45,8 +54,8 @@ external water quality model dir == ../../model_components/includes/wq/AED_A001
 cfl external == 0.7                                             ! <Global Maximum Courant Number>
 cfl internal == 0.7                                             ! <Global Maximum Courant Number>
 time format == ISODATE                                          ! <Hours;ISODate>
-start time ==  02/11/2012 00:00:00                              ! <simulation start time>
-end time   ==  31/12/2013 00:00:00                              ! <simulation stop time>
+start time ==  02/11/2014 00:00:00                              ! <simulation start time>
+end time   ==  31/12/2015 00:00:00                              ! <simulation stop time>
 timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
 turbulence update dt == 300.                                    ! for GOTM (s)
 display dt == 900.                                              !
@@ -84,10 +93,10 @@ include == ../../model_components/includes/domain/domain_config_csiem_mesh_A_bud
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
-Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_theme21_benthic_zones_final.shp
+Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_WEM_benthic_zones.shp
 
 ! Bottom roughness:
-include == ../../model_components/includes/roughness/roughness_wq_Material_CSOA_Ranae_merged_Mar2025.fvc
+include == ../../model_components/includes/roughness/CSOA_WEM_material_zones.fvc
 
 
 !INITIAL CONDITIONS
@@ -101,16 +110,15 @@ Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D
 
 ! ENVIRONMENTAL FORCING CONDITIONS 
 !_________________________________________________________________
-!Global Temporal Extrapolation Check == WARNING                    !check for TUFLOW FV 2025.2.1
 
 ! WEATHER  (WRF output)
-include == ../../model_components/includes/bc/1_weather/met_BARRA_perth_20121101_20140101.fvc  
+include == ../../model_components/includes/bc/1_weather/met_BARRA_perth_20141101_20160101.fvc  
 
 ! WAVES  (WWM output)
-include == ../../model_components/includes/bc/2_waves/wave_WWM_20121101_20140101.fvc   
+include == ../../model_components/includes/bc/2_waves/wave_WWM_20141101_20160101.fvc   
 
 ! OCEAN  (ROMS HD plus OBC_wq from 6-polygon climatology)
-include == ../../model_components/includes/bc/3_ocean/obc_wq_20121101_20131231_6OBC_climatology.fvc   
+include == ../../model_components/includes/bc/3_ocean/obc_wq_20141101_20151231_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
 include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
@@ -147,9 +155,10 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/2013A/
+output dir         == ../../output_archive/2015A/
 include == ../../model_components/includes/output/output_wq.fvc
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_wave.fvc
 !include == ../../model_components/includes/output/output_points.fvc
 !include == ../../model_components/includes/output/output_trc.fvc
+
