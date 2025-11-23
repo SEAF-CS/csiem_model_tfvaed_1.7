@@ -11,15 +11,15 @@
 !                                                                !
 !________________________________________________________________!
 !                                                                !
-! CSIEM 3D Hydrodynamic-Biogeochemical simulation                !
+! CSIEM 3D Hydrodynamics only simulation                         !
 !                                                                !
 ! TUFLOW-FV Control File                                         !
 !                                                                !
 ! Developed as part of the WAMSI-Westport Marine Science Program !
-! Date 21/06/2025                                                !
+! Date 01/08/2025                                                !
 !                                                                !
-! This simulation focus: Nov/12-Dec/2013 period with WQ          !                        
-! AED model configuration including nutrients and bio            !
+! This simulation focus: Nov/12-Dec/2013 period with HD          !
+! tracers are included for flushing and source tracking          !
 !________________________________________________________________!
 
 
@@ -35,18 +35,12 @@ include salinity == 1,1                                         ! <0;1, 0;1> 0 f
 include temperature == 1,1                                      ! <0;1, 0;1> 0 for false & 1 for true
 include sediment == 0,0                                         ! <0;1, 0;1> 0 for false & 1 for true
 include heat == 1                                               ! <0;1, 0;1> 0 for false & 1 for true
-ntracer == 0                                                    ! Number of passive tracers
+ntracer == 4                                                    ! Number of passive tracers
 
 
 ! TURBULENCE CONFIGURATION
 !_________________________________________________________________
 include == ../../model_components/includes/turbulence/turbulence.fvc
-
-
-! WATER QUALITY & ECOLOGY 
-!_________________________________________________________________
-water quality model == EXTERNAL
-external water quality model dir == ../../model_components/includes/wq/AED_B010
 
 
 ! TIME COMMANDS
@@ -156,8 +150,8 @@ write check files  == ./check/
 write restart dt   == 480
 logdir             == log
 output dir         == ../../output_archive/1.7.0/2013B/
-include == ../../model_components/includes/output/output_wq.fvc
 include == ../../model_components/includes/output/output_met.fvc
+include == ../../model_components/includes/output/output_trc.fvc
 include == ../../model_components/includes/output/output_wave.fvc
 include == ../../model_components/includes/output/output_points.fvc
 

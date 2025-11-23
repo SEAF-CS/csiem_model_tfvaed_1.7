@@ -155,10 +155,9 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/2015A/
+output dir         == ../../output_archive/1.7.0/2015A/
 include == ../../model_components/includes/output/output_wq.fvc
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_wave.fvc
-!include == ../../model_components/includes/output/output_points.fvc
-!include == ../../model_components/includes/output/output_trc.fvc
+include == ../../model_components/includes/output/output_points.fvc
 
