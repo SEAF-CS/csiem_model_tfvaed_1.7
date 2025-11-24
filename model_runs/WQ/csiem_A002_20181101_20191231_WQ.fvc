@@ -118,7 +118,7 @@ include == ../../model_components/includes/bc/1_weather/met_WRF_d02_20181101_201
 include == ../../model_components/includes/bc/2_waves/wave_WWM_20181101_20200101.fvc   
 
 ! OCEAN  (ROMS HD plus OBC_wq from 6-polygon climatology)
-include == ../../model_components/includes/bc/3_ocean/obc_wq_20181001_20191231_6OBC_climatology.fvc   
+include == ../../model_components/includes/bc/3_ocean/obc_wq_20181101_20191231_6OBC_climatology.fvc   
 
 ! SWAN-CANNING & PEEL-HARVEY 
 include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq.fvc
