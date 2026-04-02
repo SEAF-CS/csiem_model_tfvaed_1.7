@@ -18,7 +18,7 @@
 
 !# SWAN RIVER BOUNDARY @ NARROWS : interpolated from raw WIR dataset 
 !#
-bc == Q, 2, ../../../environment_repo/4_sce/CSV/NAR_Inflow_1994_10_06-2024_10_29.csv
+bc == Q, 2, ../../../environment_repo/4_sce/CSV/NAR_Inflow_1994_10_06-2024_10_29_2022fix.csv
  bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
  bc scale  ==        1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
  bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
