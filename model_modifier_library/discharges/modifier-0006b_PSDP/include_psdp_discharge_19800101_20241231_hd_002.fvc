@@ -1,0 +1,66 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __ 
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!                                        
+!   INCLUDE file for adding a discharge modifier to the 
+!   Cockburn Sound Integrated Ecosystem Model (CSIEM)
+!
+! ADD DISCHARGE: -----------------------------------------------------------------------
+
+! ..../csiem_model_tfvaed_2.0/model_modifier_library/discharges/modifier-000Xb_PSDP
+
+!# PERTH SEAWATER DESALINATION PLANT (PSDP) - Direct insertion
+!#original BC within one cell
+! bc == QC, 115.76814,-32.20014  ,  ../../../model_modifier_library/discharges/modifier-0006b_PSDP/PSDP1_19800101_20241231_wq.csv
+  ! bc header == Date,Q,Salt,Temp,Zeros,Ones,Zeros,DO,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Ones,Zeros,Zeros,Zeros,Ones,Zeros,Zeros
+! bc name == Date,Q,Salt,Temp,Age,TSS,TSS,Oxy,Amm,Nit,FRP,FRP_ads,DOC,POC,DON,PON,DOP,POP,GRN,PICO,DIAT,DINO
+  ! bc scale == 1.0,1.0,1.0,1.0,0.01,1.0,1.0,0.1,0.1,0.1,0.01,1.0,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1,1,1,1,1
+  ! vertical coordinate type == height
+  ! vertical distribution == ../../../model_modifier_library/discharges/modifier-0006b_PSDP/psdp_discharge_depth_bottom2m.csv
+! end bc
+
+!#DISTRIBUTED BC within 5 cells on WEM mesh 002, however on csiem_A002 mesh, these 5 locations are on two cells
+! vertcal discharge depth also adjusted from bottom 0-2.8 m
+bc == QC, 115.7672,-32.1999  ,  ../../../model_modifier_library/discharges/modifier-0006b_PSDP/PSDP1_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,Zeros,Zeros,Zeros,Zeros,Ones
+! bc name == Date,Q,Salt,Temp,TRACE_1,TRACE_2,TRACE_3,TRACE_4,TRACE_5,TRACE_6
+  bc scale  ==        0.2,1,1,1,1,1,1,1,1
+  vertical coordinate type == height
+  vertical distribution == ../../../model_modifier_library/discharges/modifier-0006b_PSDP/psdp_discharge_depth_bottom2pt8m.csv
+end bc
+
+bc == QC, 115.7676,-32.2001  ,  ../../../model_modifier_library/discharges/modifier-0006b_PSDP/PSDP1_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,Zeros,Zeros,Zeros,Zeros,Ones
+! bc name == Date,Q,Salt,Temp,TRACE_1,TRACE_2,TRACE_3,TRACE_4,TRACE_5,TRACE_6
+  bc scale  ==        0.2,1,1,1,1,1,1,1,1
+  vertical coordinate type == height
+  vertical distribution == ../../../model_modifier_library/discharges/modifier-0006b_PSDP/psdp_discharge_depth_bottom2pt8m.csv
+end bc
+
+bc == QC, 	115.7683,-32.2003  ,  ../../../model_modifier_library/discharges/modifier-0006b_PSDP/PSDP1_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,Zeros,Zeros,Zeros,Zeros,Ones
+! bc name == Date,Q,Salt,Temp,TRACE_1,TRACE_2,TRACE_3,TRACE_4,TRACE_5,TRACE_6
+  bc scale  ==        0.2,1,1,1,1,1,1,1,1
+  vertical coordinate type == height
+  vertical distribution == ../../../model_modifier_library/discharges/modifier-0006b_PSDP/psdp_discharge_depth_bottom2pt8m.csv
+end bc
+
+bc == QC, 115.7691,-32.2005  ,  ../../../model_modifier_library/discharges/modifier-0006b_PSDP/PSDP1_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,Zeros,Zeros,Zeros,Zeros,Ones
+! bc name == Date,Q,Salt,Temp,TRACE_1,TRACE_2,TRACE_3,TRACE_4,TRACE_5,TRACE_6
+  bc scale  ==        0.2,1,1,1,1,1,1,1,1
+  vertical coordinate type == height
+  vertical distribution == ../../../model_modifier_library/discharges/modifier-0006b_PSDP/psdp_discharge_depth_bottom2pt8m.csv
+end bc
+
+bc == QC, 115.7693,-32.2006  ,  ../../../model_modifier_library/discharges/modifier-0006b_PSDP/PSDP1_19800101_20241231_wq.csv
+  bc header == Date,Q,Salt,Temp,Zeros,Zeros,Zeros,Zeros,Zeros,Ones
+! bc name == Date,Q,Salt,Temp,TRACE_1,TRACE_2,TRACE_3,TRACE_4,TRACE_5,TRACE_6
+  bc scale  ==        0.2,1,1,1,1,1,1,1,1
+  vertical coordinate type == height
+  vertical distribution == ../../../model_modifier_library/discharges/modifier-0006b_PSDP/psdp_discharge_depth_bottom2pt8m.csv
+end bc
