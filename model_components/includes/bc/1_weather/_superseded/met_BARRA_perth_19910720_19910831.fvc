@@ -1,0 +1,79 @@
+! TUFLOW-FV FVC include — BARRA-PH atmospheric forcing for the August 1991 run
+! (covers 20 Jul 1991 -> 31 Aug 1991, single BARRA-PH calendar-year NetCDF)
+!
+! Source: get_atmos / BARRA-PH (Bureau of Meteorology). NetCDF carries both `time` (UTC)
+!         and `local_time` (AWST = UTC+8h) along the time dim. This include reads
+!         `local_time` directly, so bc reference time is the AWST origin
+!         01/01/1990 00:00 — matching the 2013 production BARRA convention.
+! Variables: W10 (uwnd10m, vwnd10m), MSLP, LW/SW radiation, air temp, precip, rel humidity
+!
+! NOTE: single 1991 file — no calendar-year stacking. The run window is entirely
+!       inside 1991, so one BARRA-PH calendar-year file covers the whole period.
+! Block order, grid label `barra`, and W10 scale match the 2013 production include.
+
+! ============================== BARRA-PH 1991 ===============================
+
+grid definition file == ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  grid definition variables == longitude, latitude
+  grid definition label == barra
+end grid
+
+bc == MSLP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  bc header == local_time, mslp
+  bc update dt == 3600.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 0.01
+end bc
+
+bc == LW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  bc header == local_time, downward_longwave
+  bc update dt == 3600.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+
+bc == SW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  bc header == local_time, downward_shortwave
+  bc update dt == 3600.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
+
+bc == AIR_TEMP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  bc header == local_time, air_temp_2m
+  bc update dt == 3600.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc offset == -273.15
+end bc
+
+bc == W10_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  bc header == local_time, uwnd10m, vwnd10m
+  bc update dt == 3600.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 1.0, 1.0
+end bc
+
+bc == PRECIP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  bc header == local_time, precip_rate
+  bc update dt == 3600.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+  bc scale == 0.024
+end bc
+
+bc == REL_HUM_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_19910101_19911231.nc
+  bc header == local_time, relhum
+  bc update dt == 3600.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00
+  bc default == NaN
+end bc
