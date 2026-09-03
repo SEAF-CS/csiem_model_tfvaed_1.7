@@ -1,12 +1,12 @@
 ! TUFLOW-FV configuration file for including the BARRA Atmospheric Dataset for Perth region
 ! Written by `get_barra.py`
 
-grid definition file == ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc 
+grid definition file == $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc 
   grid definition variables == longitude, latitude
   grid definition label == barra
 end grid
 
-bc == MSLP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
+bc == MSLP_GRID, barra, $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
   bc header == local_time, mslp
   bc update dt == 60.
   bc time units == hours
@@ -15,7 +15,7 @@ bc == MSLP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8
   bc scale == 0.01
 end bc
 
-bc == LW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
+bc == LW_RAD_GRID, barra, $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
   bc header == local_time, lwsfcdown
   bc update dt == 60.
   bc time units == hours
@@ -23,7 +23,7 @@ bc == LW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC
   bc default == NaN
 end bc
 
-bc == SW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
+bc == SW_RAD_GRID, barra, $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
   bc header == local_time, swsfcdown
   bc update dt == 60.
   bc time units == hours
@@ -31,7 +31,7 @@ bc == SW_RAD_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC
   bc default == NaN
 end bc
 
-bc == AIR_TEMP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
+bc == AIR_TEMP_GRID, barra, $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
   bc header == local_time, temp_scrn
   bc update dt == 60.
   bc time units == hours
@@ -40,7 +40,7 @@ bc == AIR_TEMP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_U
   bc offset == -273.15
 end bc
 
-bc == W10_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
+bc == W10_GRID, barra, $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
   bc header == local_time, uwnd10m, vwnd10m
   bc update dt == 60.
   bc time units == hours
@@ -48,7 +48,7 @@ bc == W10_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_
   bc default == NaN
 end bc
 
-bc == PRECIP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
+bc == PRECIP_GRID, barra, $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
   bc header == local_time, precip_rate
   bc update dt == 60.
   bc time units == hours
@@ -57,7 +57,7 @@ bc == PRECIP_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC
   bc scale == 0.024
 end bc
 
-bc == REL_HUM_GRID, barra, ../../../environment_repo/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
+bc == REL_HUM_GRID, barra, $ENV_REPO/1_weather/BARRA/BARRA_PH_UTC+8_20150101_20151231.nc
   bc header == local_time, relhum
   bc update dt == 60.
   bc time units == hours
