@@ -1,12 +1,12 @@
 ! INCLUDE ------------------------------------------------------------------------------
-!       _____  _____ _____ ______ __  __ 
+!       _____  _____ _____ ______ __  __
 !      / ____|/ ____|_   _|  ____|  \/  |
 !     | |    | (___   | | | |__  | \  / |
 !     | |     \___ \  | | |  __| | |\/| |
 !     | |____ ____) |_| |_| |____| |  | |
 !      \_____|_____/|_____|______|_|  |_|
-!                                        
-!   INCLUDE file for adding a environment input to the 
+!
+!   INCLUDE file for adding a environment input to the
 !   Cockburn Sound Integrated Ecosystem Model (CSIEM)
 !
 ! ADD BEACH DRAINS: --------------------------------------------------------------------
@@ -19,69 +19,75 @@
 !# DRAIN D1 - LAKE RICHMOND OUTFLOW : approximated via GLM lake-richmond simulation
 !# (Rockingham Main Drain, managed by Water Corporation)
 !#
-bc == QC, 115.702535, -32.274567, ../../../environment_repo/7_sw/CSV/LakeRichmond_Outflow_1970_01_01-2024_10_29.csv
- bc header == Date, Discharge,Sal,Temp,zeroes,TSS,Oxy,Amm,Nit,FRP,   FRP,DOC_T,POC_T,DON_T,PON_T, OP,  OP, CHLA, CHLA, CHLA, CHLA, ones,zeroes,zeroes,zeroes,zeroes
- !                ISOTime, Q, Sal,Temp,TRACE1,TSS,Oxy,Amm,Nit,FRP,FRPADS,  DOC,  POC,  DON,  PON,DOP, POP, CHLA, CHLA, CHLA, CHLA, TRC1,TRC2,TRC3,TRC4,AGE
- bc scale  ==              1,   1,   1,1.0000,1.0,1.0,1.0,1.0,1.0,   0.1,0.500,0.300,1.000,1.000,0.5, 0.3,0.125,0.333,2.292, 1.25,   1,   1,   1,   1,  1
- bc offset == 0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+!# REV 2026-06-14: activated with updated GLM4 outflow (1980-2025, daily) from
+!#   csiem_mangles/LakeRichmond_Outflow_GLM4_1980_2025.csv. Mapped via the canonical
+!#   CSIEM1.7 20-column AED inflow template (identical to the 4_sce river inflows):
+!#   Date,Flow,SAL,TEMP,TSS,OXY,SIL,AMM,NIT,FRP,DOC_T,POC_T,DON_T,PON_T,OP,CHLA,TN,TP,ONES,ZEROS
+!#
+bc == QC, 115.702535, -32.274567, $ENV_REPO/7_sw/CSV/LakeRichmond_Outflow_GLM4_19800101_20251231.csv
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
+ bc scale  ==        1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 end bc
 
 
 
 !### NOT COMPLETED
+!### D2-D13 DISABLED 2026-06-14: reference environment_repo/7_sw/CSV/Stormwater_Inflow_*.csv
+!###   which does not exist in this tree. Re-enable once a Stormwater_Inflow BC is provided.
 
-!# DRAIN D2 : approximated 
+!# DRAIN D2 : approximated
 !#
-bc == QC, 115.710943, -32.275229, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.710943, -32.275229, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
-!# DRAIN D3 : approximated 
+!# DRAIN D3 : approximated
 !#
-bc == QC, 115.716090, -32.275373, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.716090, -32.275373, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
-!# DRAIN D4 : approximated 
+!# DRAIN D4 : approximated
 !#
-bc == QC, 115.717559, -32.275828, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.717559, -32.275828, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
-!# DRAIN D5 : approximated 
+!# DRAIN D5 : approximated
 !#
-bc == QC, 115.729300, -32.274484, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.729300, -32.274484, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
-!# DRAIN D6 & D7 : approximated 
+!# DRAIN D6 & D7 : approximated
 !#
-bc == QC, 115.731056, -32.273673, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.731056, -32.273673, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
-!# DRAIN D8 : approximated 
+!# DRAIN D8 : approximated
 !#
-bc == QC, 115.733217, -32.271986, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.733217, -32.271986, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
-!# DRAIN D9 : approximated 
+!# DRAIN D9 : approximated
 !#
-bc == QC, 115.738689, -32.268148, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.738689, -32.268148, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
 !# DRAIN D10 : approximated  (used by CBH)
 !#
-bc == QC, 115.746803, -32.260000, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.746803, -32.260000, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
 !# DRAIN D11 : approximated  (used by CBH)
 !#
-bc == QC, 115.751540, -32.255481, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.751540, -32.255481, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
 !##-------------------------------------------------------------------------------------
@@ -89,14 +95,14 @@ end bc
 
 !# DRAIN D12 : approximated  (used by WCWA/PSDP)
 !#
-bc == QC, 115.770476, -32.204474, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.770476, -32.204474, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
 !# DRAIN D13 : approximated  (used by Alcoa)
 !#
-bc == QC, 115.775052, -32.187689, ../../../environment_repo/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
-end bc
+!bc == QC, 115.775052, -32.187689, $ENV_REPO/7_sw/CSV/Stormwater_Inflow_1970_01_01-2024_10_29.csv
+!end bc
 
 
 !### NOT COMPLETED

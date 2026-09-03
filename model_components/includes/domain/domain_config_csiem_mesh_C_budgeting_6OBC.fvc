@@ -4,7 +4,8 @@ Read GIS Nodestring == ../../gis_repo/1_domain/nodestrings/ns_005_nutrient_6OBC_
 
 !3D MODEL
 vertical mesh type == z 
-layer faces == ../../gis_repo/1_domain/layers/SEP_zlayer_0p25_002.csv
+!layer faces == ../../gis_repo/1_domain/layers/SEP_zlayer_0p25_002.csv      ! prev: 4sig/-3 + 0.5/1m z (kept as fallback)
+layer faces == ../../gis_repo/1_domain/layers/SEP_zlayer_0p6_0p75_geo_001.csv  ! 4sig/-2.4 + 0.6m(-10.2) + 0.75m(-20.7) + geo x1.35(-75) + 50m(-175)
 sigma layers == 4          
 min bottom layer thickness == 0.5  
 

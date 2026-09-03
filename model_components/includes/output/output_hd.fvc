@@ -2,7 +2,7 @@
 
 output == netcdf
   output parameters == h,v,sal,temp
-  output interval == 14400
+  output interval == 3600 !14400
 end output 
 
 !output == points

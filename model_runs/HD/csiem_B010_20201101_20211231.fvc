@@ -20,6 +20,21 @@
 !                                                                !
 ! This simulation focus: Nov/20-Dec/2021 period with HD          !
 ! tracers are included for flushing and source tracking          !
+!                                                                !
+! ALIGNED 2026-09 with the canonical 1.8 physics (validated on   !
+! the 1991 hindcast, csiem_B010_19910720_19910831.fvc):          !
+!   1. physics: stability WL 15, cell 3d depth 0.5, roughness    !
+!      0.03, horiz visc/diff 0.01 (limits 0.01-10), vert visc    !
+!      5e-5 / diff 9e-6 floors, latent heat 1.5e-3, albedo 0.09, !
+!      diffusivity limiter dt 10s                                !
+!   2. bathy overrides: Success + Minstrel channels (2025 EIA    !
+!      survey) + Swan-mouth tidal-choke fix                      !
+!   3. IC switched to B010-mesh file (was B009)                  !
+!   4. output dir -> output_archive/1.8.0/; sw_MISC D1 drain on  !
+!                                                                !
+! ENVIRONMENT VARIABLES: bc include files reference the shared   !
+! forcing repo via $ENV_REPO (set by run_tuflowfv_vm.sh, or):    !
+! export ENV_REPO="G:/CSIEM/V1.7/MODEL/csiem_model_tfvaed_1.7/model_components/environment_repo"
 !________________________________________________________________!
 
 
@@ -52,27 +67,29 @@ start time ==  02/11/2020 00:00:00                              ! <simulation st
 end time   ==  31/12/2021 00:00:00                              ! <simulation stop time>
 timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
 turbulence update dt == 300.                                    ! for GOTM (s)
+diffusivity limiter dt == 10.                                   ! (s)
 display dt == 900.                                              !
 
 
 ! MODEL PARAMETERS
 !_________________________________________________________________
-stability limits == 17.0,10.0                                   ! <maximum WL, maximum velocity>
+stability limits == 15.0,10.0                                   ! <maximum WL, maximum velocity>
 cell wet/dry depths == 5.0e-3, 1.0e-1                           ! <cells dry depth (m), cell wet depth (m)>
-cell 3d depth == 1 ! 0.5                                        ! <cells where computation are 2d in case they are shallower than>
-global bottom roughness == 0.05                                 ! <lobal roughness>
+cell 3d depth == 0.5                                              ! <cells where computation are 2d in case they are shallower than>
+global bottom roughness == 0.03                                 ! <global roughness>
 g == 9.81
 reference salinity == 35.0
 reference temperature == 20.0
 reference density == 1030.0
 kinematic viscosity == 1.0e-6
-global horizontal eddy viscosity == 0.0
-global horizontal eddy viscosity limits == 0.0, 9999.0
-global horizontal scalar diffusivity == 0.0
-global horizontal scalar diffusivity limits == 0.0, 9999.0
-global vertical eddy viscosity limits == 0.0, 1.0
-global vertical scalar diffusivity limits == 0.0, 1.0
-Bulk Latent Heat Coefficient == 1.8e-3 ! Default 1.3e-3
+global horizontal eddy viscosity == 0.01
+global horizontal eddy viscosity limits == 0.01, 10.0
+global horizontal scalar diffusivity == 0.01
+global horizontal scalar diffusivity limits == 0.01, 10.0
+global vertical eddy viscosity limits == 5.0e-5, 1.0
+global vertical scalar diffusivity limits == 9.0e-6, 1.0
+Bulk Latent Heat Coefficient == 1.5e-3                          ! Default 1.3e-3
+Shortwave Radiation Albedo == 0.09
 
 
 ! GIS PROJECTION, GEOMETRY & DOMAIN
@@ -84,6 +101,15 @@ echo geometry == 1
 include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
 
 
+
+! BATHYMETRY OVERRIDES  (cell-elevation update files, keyed by .2dm Cell_ID)
+!   Applied AFTER the mesh node Z is read in the domain include above, so they OVERWRITE the mesh
+!   bathy for the listed cells only (cells not listed keep their mesh elevation). Built from the
+!   O2Me 2025 EIA AHD survey via csiem-marvl/mesh_refinement. The two regions do not overlap.
+!   Ref: https://docs.tuflow.com/fv/manual/2026.0/HD2D-Bath-2.html#HD2D-Bath-SB-3
+Cell Elevation File == ../../model_components/gis_repo/1_domain/bathy_override/bathy_success_channel.csv, Cell_ID    ! Success channel (N entrance): 146 cells deepened toward survey
+Cell Elevation File == ../../model_components/gis_repo/1_domain/bathy_override/bathy_minstrel_channel.csv, Cell_ID   ! Minstrel channel (S sill): 1112 cells set to survey (NB 19 cells Z>=0 -> dry)
+Cell Elevation File == ../../model_components/gis_repo/1_domain/bathy_override/bathy_swan_mouth.csv, Cell_ID         ! Swan mouth - restore B009 bathy through Blackwall throat (tidal-choke fix; 367 cells, sill-protected)
 ! BOTTOM MATERIALS
 !_________________________________________________________________
 ! Material zones:
@@ -95,8 +121,7 @@ include == ../../model_components/includes/roughness/CSOA_WEM_material_zones.fvc
 
 !INITIAL CONDITIONS
 !_________________________________________________________________
-Initial Condition 2D == ../../model_components/includes/ic/initical_condition_2D_Nov_B009.csv
-
+Initial Condition 2D == ../../model_components/includes/ic/initial_condition_2D_Nov_B010.csv   ! 1.8: was initical_condition_2D_Nov_B009.csv (B009-mesh IC on a B010 run)
 !include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
 !restart file == ./log/csiem_B009_20221101_20240401_WQ.rst
 !use restart file time == 0
@@ -122,9 +147,7 @@ include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_wq.fvc
 include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
 
 ! STORMWATER  (13 stormwater drains)
-!include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc 
-
-
+include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc   ! 1.8: D1 Lake Richmond / Mangles Bay drain (GLM4 1980-2025) enabled; D2-D13 disabled inside (no CSV)
 ! ECOSYSTEM MODIFIERS (licensed industry activities) 
 !_________________________________________________________________
 
@@ -149,7 +172,7 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/1.7.0/2021B/
+output dir         == ../../output_archive/1.8.0/2021B/
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_trc.fvc
 include == ../../model_components/includes/output/output_wave.fvc

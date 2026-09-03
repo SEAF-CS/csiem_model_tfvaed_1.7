@@ -18,9 +18,19 @@
 
 !# PEEL-HARVEY RIVER BOUNDARY : interpolated from raw WIR dataset 
 !#
-bc == QC, 115.6287, -32.5980, ../../../environment_repo/5_phe/CSV/PeelHarvey_Inflow_1970_01_01-2024_10_29.csv
+!# PEEL-HARVEY exchange split 50:50 between the two ocean entrances (post-Apr-1994):
+!#   Mandurah Channel (natural entrance) + Dawesville Cut (opened Apr-1994).
+!#   Flow scale 0.5 on each; concentrations unchanged. Pre-1994 sims instead use
+!#   phe_WIR_inflows_wq_19890101_19960101.fvc (Mandurah only).
+!#
+bc == QC, 115.7107, -32.5180, $ENV_REPO/5_phe/CSV/PeelHarvey_Inflow_1970_01_01-2024_10_29.csv   ! Mandurah Channel (50%)
  bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
- bc scale  ==        1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc scale  ==        0.5,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
  bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 end BC
 
+bc == QC, 115.6287, -32.5980, $ENV_REPO/5_phe/CSV/PeelHarvey_Inflow_1970_01_01-2024_10_29.csv   ! Dawesville Cut (50%)
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
+ bc scale  ==        0.5,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end BC

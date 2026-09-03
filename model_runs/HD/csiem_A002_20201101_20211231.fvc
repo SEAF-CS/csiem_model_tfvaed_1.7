@@ -20,6 +20,20 @@
 !                                                                !
 ! This simulation focus: Nov/20-Dec/2021 period with HD          !
 ! tracers are included for flushing and source tracking          !
+!                                                                !
+! ALIGNED 2026-09 with the canonical 1.8 physics (validated on   !
+! the 1991 hindcast, csiem_B010_19910720_19910831.fvc):          !
+!   1. physics: stability WL 15, cell 3d depth 0.5, roughness    !
+!      0.03, horiz visc/diff 0.01 (limits 0.01-10), vert visc    !
+!      5e-5 / diff 9e-6 floors, latent heat 1.5e-3, albedo 0.09, !
+!      diffusivity limiter dt 10s                                !
+!   2. output dir -> output_archive/1.8.0/; sw_MISC D1 drain on  !
+!   NB: bathy overrides + B010 IC are B-mesh only; no A-mesh     !
+!   equivalents exist (A-mesh keeps as-built bathymetry)         !
+!                                                                !
+! ENVIRONMENT VARIABLES: bc include files reference the shared   !
+! forcing repo via $ENV_REPO (set by run_tuflowfv_vm.sh, or):    !
+! export ENV_REPO="G:/CSIEM/V1.7/MODEL/csiem_model_tfvaed_1.7/model_components/environment_repo"
 !________________________________________________________________!
 
 
@@ -58,27 +72,29 @@ start time ==  02/11/2020 00:00:00                              ! <simulation st
 end time   ==  31/12/2021 00:00:00                              ! <simulation stop time>
 timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
 turbulence update dt == 300.                                    ! for GOTM (s)
+diffusivity limiter dt == 10.                                   ! (s)
 display dt == 900.                                              !
 
 
 ! MODEL PARAMETERS
 !_________________________________________________________________
-stability limits == 17.0,10.0                                   ! <maximum WL, maximum velocity>
+stability limits == 15.0,10.0                                   ! <maximum WL, maximum velocity>
 cell wet/dry depths == 5.0e-3, 1.0e-1                           ! <cells dry depth (m), cell wet depth (m)>
-cell 3d depth == 1 ! 0.5                                        ! <cells where computation are 2d in case they are shallower than>
-global bottom roughness == 0.05                                 ! <lobal roughness>
+cell 3d depth == 0.5                                              ! <cells where computation are 2d in case they are shallower than>
+global bottom roughness == 0.03                                 ! <global roughness>
 g == 9.81
 reference salinity == 35.0
 reference temperature == 20.0
 reference density == 1030.0
 kinematic viscosity == 1.0e-6
-global horizontal eddy viscosity == 0.0
-global horizontal eddy viscosity limits == 0.0, 9999.0
-global horizontal scalar diffusivity == 0.0
-global horizontal scalar diffusivity limits == 0.0, 9999.0
-global vertical eddy viscosity limits == 0.0, 1.0
-global vertical scalar diffusivity limits == 0.0, 1.0
-Bulk Latent Heat Coefficient == 1.8e-3 ! Default 1.3e-3
+global horizontal eddy viscosity == 0.01
+global horizontal eddy viscosity limits == 0.01, 10.0
+global horizontal scalar diffusivity == 0.01
+global horizontal scalar diffusivity limits == 0.01, 10.0
+global vertical eddy viscosity limits == 5.0e-5, 1.0
+global vertical scalar diffusivity limits == 9.0e-6, 1.0
+Bulk Latent Heat Coefficient == 1.5e-3                          ! Default 1.3e-3
+Shortwave Radiation Albedo == 0.09
 
 
 ! GIS PROJECTION, GEOMETRY & DOMAIN
@@ -128,9 +144,7 @@ include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_wq.fvc
 include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc 
 
 ! STORMWATER  (13 stormwater drains)
-!include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc 
-
-
+include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc   ! 1.8: D1 Lake Richmond / Mangles Bay drain (GLM4 1980-2025) enabled; D2-D13 disabled inside (no CSV)
 ! ECOSYSTEM MODIFIERS (licensed industry activities) 
 !_________________________________________________________________
 
@@ -155,7 +169,7 @@ include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_p
 write check files  == ./check/
 write restart dt   == 480
 logdir             == log
-output dir         == ../../output_archive/1.7.0/2021A/
+output dir         == ../../output_archive/1.8.0/2021A/
 include == ../../model_components/includes/output/output_met.fvc
 include == ../../model_components/includes/output/output_trc.fvc
 include == ../../model_components/includes/output/output_wave.fvc
