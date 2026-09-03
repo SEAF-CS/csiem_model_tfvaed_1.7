@@ -1,0 +1,73 @@
+! INCLUDE -------------------------------------------------------------------
+! CSIEM 1994 hindcast — Ocean BC for run window 01/11/1993 -> 31/12/1994
+!
+! Ocean physics: HYCOM (single continuous file Oct 1993 -> Dec 1994 — no stacking)
+!   - T, S, u, v from HYCOM (water_temp, salinity, water_u, water_v)
+!   - surf_el IS included (OBC_GRID sub-type 6 requires the fixed 6-var pattern
+!     TIME, SSH, U, V, SALINITY, TEMPERATURE) but is ZEROED in the NetCDF, so it
+!     contributes 0 SSH. The MOCK tide BC (total gauge signal: tide + surge + IB
+!     + steric) provides total WL with no sub-tidal double-counting.
+!     When FES2022 arrives (astronomical only), restore real HYCOM surf_el here.
+!
+! Tide: MOCK from Fremantle DOT FFFBH01 gauge (PLACEHOLDER while FES2022 pending)
+!   - Single continuous 1990-11-01 -> 1994-12-31 CSV (no stacking, no year-boundary
+!     gaps). The same CSV is reused by every 1990s sim window.
+!   - CSV form (Date, water_level) in AWST — TUFLOW-FV won't read the curtain NetCDF
+!
+! BC nodestrings: 1, 12, 13, 14, 15, 16  (the 6OBC layout)
+!
+! TIME HANDLING:
+!   - HYCOM NetCDF: `time` is UTC -> bc reference time 01/01/1990 08:00 (+8h shift to AWST)
+!   - MOCK tide CSV: Date column is absolute AWST datetime -> no ref time needed
+
+! ============================ OCEAN T/S/U/V (HYCOM) ============================
+
+grid definition file == $ENV_REPO/3_ocean/HYCOM/HYCOM_UTC+8_19931001_19941231.nc
+  grid definition variables == longitude, latitude, depth
+  vertical coordinate type == depth
+  grid definition label == hycom
+  boundary grid map == 1
+end grid
+
+bc == OBC_GRID, hycom, $ENV_REPO/3_ocean/HYCOM/HYCOM_UTC+8_19931001_19941231.nc
+  sub-type == 6
+  bc header == time, surf_el, water_u, water_v, salinity, water_temp
+  bc nodestrings == 1, 12, 13, 14, 15, 16
+  bc update dt == 86400.
+  bc time units == hours
+  bc reference time == 01/01/1990 08:00   ! HYCOM `time` is UTC -> +8h shift to AWST clock
+  bc default == 0.0, 0.0, 0.0, 35.0, 20.0   ! SSH, U, V, SALINITY, TEMPERATURE
+  bc offset == 0.0, 0.0, 0.0, 0.0, 1.0   ! SSH, U, V, SALINITY, TEMPERATURE
+end bc
+
+! ============================ TIDE (MOCK Fremantle, continuous) ===============
+!
+! Single continuous CSV spanning 1990-11-01 -> 1994-12-31 AWST (15-min, no gaps).
+! Built directly from raw DOT FFFBH01 yearly gauge files (concatenated in AWST
+! before mean-removal) so there is no 8h hole at each year boundary.
+! Mean removed: 0.6731 m (single reference over the full 4-year+ record).
+
+bc == WL, 1, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 12, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 13, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 14, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 15, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 16, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc

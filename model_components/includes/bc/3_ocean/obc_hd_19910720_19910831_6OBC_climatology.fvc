@@ -1,0 +1,86 @@
+! INCLUDE -------------------------------------------------------------------
+! CSIEM August 1991 run — Ocean BC   (ITER9)
+! (run window 20/07/1991 -> 31/08/1991)
+!
+! Ocean physics: ROMS-DERIVED CLIMATOLOGY (HYCOM does not cover 1991)
+!   - T, S, u, v from the 23-year ROMS-derived climatology (perpetual cycle)
+!   - *** POLY-6 SALINITY (_S6corr_T1S1corr.nc, NaN-safe v3 rebuild from RAW) ***:
+!     southern OBC summer over-salting damped k=0.5 about the annual mean. UNCHANGED.
+!   - *** POLY-1 CORRECTION (NEW, month-windowed Jul-Aug) ***:
+!       temperature  dT = -2.0 degC  (was -1.0 in ITER8; north OBC still too warm)
+!       salinity     dS = -0.20 psu  (slight freshening of the northern inflow)
+!     applied ONLY to July+August records (perpetual climatology month key).
+!     NC built by g:/tmp/make_obc_polycorr.py v3 (POLY_OPS={1:{dT:{(7,8):-2.0},
+!     dS:{(7,8):-0.2}}, 6:{K:0.5}}), NaN-safe (only finite cells touched; missing
+!     stays NaN -> no -30000 misread / no cold blob). Verified 0 cells == -30000.
+!   - surf_el IS included (OBC_GRID sub-type 6 requires the fixed 6-var pattern
+!     TIME, SSH, U, V, SALINITY, TEMPERATURE) but is ZEROED in the NetCDF, so it
+!     contributes 0 SSH. The MOCK tide BC provides total WL (no double-counting).
+!
+! Tide: MOCK from Fremantle DOT FFFBH01 gauge — CSV form (Date, water_level)
+!   - Pure broadcast (single gauge) applied to all 6 nodestrings via 6 WL blocks.
+!   - Single continuous 1990-11-01 -> 1994-12-31 file (no year-boundary gaps).
+!
+! BC nodestrings: 1, 12, 13, 14, 15, 16  (the 6OBC layout)
+!
+! TIME HANDLING:
+!   - Climatology NetCDF: `time` var is already AWST -> bc reference time 00:00
+!   - MOCK tide CSV:      Date column is absolute AWST datetime -> no ref time needed
+!
+! NOTE (dominant remaining warm lever): the MFR surface map (14-Aug) shows the model
+!   offshore warmth is inherited ~1:1 from the ROMS climatology across the WHOLE western
+!   arc (polys 3/4/5, uncorrected), and the global +0.50 degC bc offset below adds to it.
+!   Poly-1 alone addresses only the northern sliver. To cut the ~+0.7 degC domain warm
+!   bias, cool polys 3/4/5 in the NC and/or reduce the +0.50 offset (next iteration).
+
+! ============================ OCEAN T/S/U/V (climatology) =====================
+
+grid definition file == $ENV_REPO/3_ocean/CLIMATOLOGY/ROMS_UTC+8_19901001_19911231_climatology_S6corr_T1S1corr.nc
+  grid definition variables == lon, lat, depth
+  vertical coordinate type == depth
+  grid definition label == clim91
+  boundary grid map == 1
+end grid
+
+bc == OBC_GRID, clim91, $ENV_REPO/3_ocean/CLIMATOLOGY/ROMS_UTC+8_19901001_19911231_climatology_S6corr_T1S1corr.nc
+  sub-type == 6
+  bc header == time, surf_el, water_u, water_v, salinity, water_temp
+  bc nodestrings == 1, 12, 13, 14, 15, 16
+  bc update dt == 86400.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00   ! AWST (climatology `time` is already AWST per file attrs)
+  bc default == 0.0, 0.0, 0.0, 35.0, 20.0   ! SSH, U, V, SALINITY, TEMPERATURE
+  bc offset ==  0.0, 0.0, 0.0, 0.10, 0.50   ! SSH, U, V, SALINITY, TEMPERATURE (global; poly-1 handled in NC)
+end bc
+
+! ============================ TIDE (MOCK Fremantle, continuous) ===============
+!
+! Single continuous CSV spanning 1990-11-01 -> 1994-12-31 AWST (15-min, no gaps).
+! Built from raw DOT FFFBH01 yearly gauge files (concatenated in AWST before
+! mean-removal). Mean removed: 0.6731 m. Pure-broadcast (all 62 nodes identical)
+! so the CSV drops the node dimension.
+
+bc == WL, 1, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 12, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 13, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 14, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 15, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 16, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc

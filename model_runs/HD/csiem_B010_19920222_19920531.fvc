@@ -1,0 +1,175 @@
+! CONFIGURATION -------------------------------------------------!
+!               _____  _____ _____ ______ __  __                 !
+!              / ____|/ ____|_   _|  ____|  \/  |                !
+!             | |    | (___   | | | |__  | \  / |                !
+!             | |     \___ \  | | |  __| | |\/| |                !
+!             | |____ ____) |_| |_| |____| |  | |                !
+!              \_____|_____/|_____|______|_|  |_|                !
+!                                                                !
+!      CONFIGURATION file for setting up a simulation of the     !
+!        Cockburn Sound Integrated Ecosystem Model (CSIEM)       !
+!                                                                !
+!________________________________________________________________!
+!                                                                !
+! CSIEM 3D Hydrodynamics only - MAR-MAY 1992 3-MONTH HINDCAST    !
+!                                                                !
+! TUFLOW-FV Control File                                         !
+!                                                                !
+! Run period: 22/02/1992 -> 31/05/1992                           !
+!   (7 days spin-up before the March-May analysis window)        !
+!                                                                !
+! Boundary forcing:                                              !
+!   - Atmos:  BARRA-PH (BOM) - single calendar-year 1992 file    !
+!   - Ocean:  ROMS-derived CLIMATOLOGY (T/S/U/V) — perpetual cyc.!
+!   - Tide:   MOCK Fremantle gauge - 1992 CSV                    !
+!   - Waves:  not used in 1990s HD scope                         !
+!                                                                !
+! Initial condition (cold start, flat seasonal, option A):       !
+!   WL=0.0, U=V=0, SAL=35.7 PSU, TEMP=22.0 C, tracers/WQ=0       !
+!                                                                !
+! NOTE: caveat from MOCK tide BC carries over — model WL is the  !
+!       response to a single coastal-gauge forcing broadcast     !
+!       along the boundary; not interpretable as offshore SSH.   !
+!________________________________________________________________!
+
+
+! SIMULATION HARDWARE
+!_________________________________________________________________
+hardware == gpu
+
+
+! SIMULATION CONFIGURATION
+!_________________________________________________________________
+spherical == 1
+include salinity == 1,1                                         ! <0;1, 0;1> 0 for false & 1 for true
+include temperature == 1,1                                      ! <0;1, 0;1> 0 for false & 1 for true
+include sediment == 0,0                                         ! <0;1, 0;1> 0 for false & 1 for true
+include heat == 1                                               ! <0;1, 0;1> 0 for false & 1 for true
+ntracer == 4                                                    ! Number of passive tracers
+
+
+! TURBULENCE CONFIGURATION
+!_________________________________________________________________
+include == ../../model_components/includes/turbulence/turbulence.fvc
+
+
+! TIME COMMANDS
+!_________________________________________________________________
+cfl external == 0.7                                             ! <Global Maximum Courant Number>
+cfl internal == 0.7                                             ! <Global Maximum Courant Number>
+time format == ISODATE                                          ! <Hours;ISODate>
+start time ==  22/02/1992 00:00:00                              ! <simulation start time>
+end time   ==  31/05/1992 00:00:00                              ! <simulation stop time>
+timestep limits == 0.1, 10.0                                    ! <min timestep (s), max timestep (s)>
+turbulence update dt == 300.                                    ! for GOTM (s)
+diffusivity limiter dt == 10.                                   ! (s)   ! ALIGN-1991 (was absent)
+display dt == 900.                                              !
+
+
+! MODEL PARAMETERS
+!_________________________________________________________________
+stability limits == 15.0,10.0                                   ! <maximum WL, maximum velocity>   ! ALIGN-1991 (was 17.0,10.0)
+cell wet/dry depths == 5.0e-3, 1.0e-1                           ! <cells dry depth (m), cell wet depth (m)>
+cell 3d depth == 0.5                                              ! <cells where computation are 2d in case they are shallower than>   ! ALIGN-1991 (was 1)
+global bottom roughness == 0.03                                 ! <global roughness>   ! ALIGN-1991 (was 0.05)
+g == 9.81
+reference salinity == 35.0
+reference temperature == 20.0
+reference density == 1030.0
+kinematic viscosity == 1.0e-6
+global horizontal eddy viscosity == 0.01                        ! ALIGN-1991 (was 0.0)
+global horizontal eddy viscosity limits == 0.01, 10.0           ! ALIGN-1991 (was 0.0, 9999.0)
+global horizontal scalar diffusivity == 0.01                    ! ALIGN-1991 (was 0.0)
+global horizontal scalar diffusivity limits == 0.01, 10.0       ! ALIGN-1991 (was 0.0, 9999.0)
+global vertical eddy viscosity limits == 5.0e-5, 1.0            ! ALIGN-1991 (was 0.0, 1.0 — restores a vertical-mixing floor)
+global vertical scalar diffusivity limits == 9.0e-6, 1.0       ! ALIGN-1991 (was 0.0, 1.0 — restores a vertical-mixing floor)
+Bulk Latent Heat Coefficient == 1.4e-3                          ! Default 1.3e-3   ! ALIGN-1991 (was 1.8e-3)
+
+
+! GIS PROJECTION, GEOMETRY & DOMAIN
+!_________________________________________________________________
+GIS format == shp
+shp projection == ../../model_components/gis_repo/1_domain/projection/projection.prj
+
+echo geometry == 1
+include == ../../model_components/includes/domain/domain_config_csiem_mesh_B_budgeting_6OBC.fvc
+
+! BATHYMETRY OVERRIDES  (cell-elevation update files, keyed by .2dm Cell_ID)
+!   Applied AFTER the mesh node Z is read in the domain include above, so they OVERWRITE the mesh
+!   bathy for the listed cells only. Same 3 overrides as the 1991 rev run — year-independent mesh
+!   fixes (O2Me 2025 EIA AHD survey via csiem-marvl/mesh_refinement). The three regions do not overlap.
+Cell Elevation File == ../../model_components/gis_repo/1_domain/bathy_override/bathy_success_channel.csv, Cell_ID    ! Success channel (N entrance): 146 cells deepened toward survey
+Cell Elevation File == ../../model_components/gis_repo/1_domain/bathy_override/bathy_minstrel_channel.csv, Cell_ID   ! Minstrel channel (S sill): 1112 cells set to survey (NB 19 cells Z>=0 -> dry)
+Cell Elevation File == ../../model_components/gis_repo/1_domain/bathy_override/bathy_swan_mouth.csv, Cell_ID         ! Swan mouth - restore B009 bathy through Blackwall throat (tidal-choke fix; 367 cells, sill-protected)
+
+
+! BOTTOM MATERIALS
+!_________________________________________________________________
+! Material zones:
+Read GIS Mat == ../../model_components/gis_repo/2_benthic/materials/CSOA_WEM_benthic_zones.shp
+
+! Bottom roughness:
+include == ../../model_components/includes/roughness/CSOA_WEM_material_zones.fvc
+
+
+!INITIAL CONDITIONS
+!_________________________________________________________________
+Initial Condition 2D == ../../model_components/includes/ic/initial_condition_2D_Mar_B010_Sgrad.csv   ! REV: E-W S+T gradient (S 35.8->36.25, T 20.9->23.2; W limit -> 115.75, held E of 115.75)
+
+!include == ../../model_components/includes/ic/initial_conditions_wq_tracer.fvc
+!restart file == ./log/csiem_B010_19920222_19920531.rst
+!use restart file time == 0
+
+
+! ENVIRONMENTAL FORCING CONDITIONS
+!_________________________________________________________________
+
+! WEATHER  (BARRA-PH 14-month 1992 run — Nov 1991 -> Dec 1992, single continuous NC)
+include == ../../model_components/includes/bc/1_weather/met_BARRA_perth_19911101_19921231.fvc
+
+! WAVES  (not used for 1990s HD scope)
+!include == ../../model_components/includes/bc/2_waves/wave_WWM_19920222_19920531.fvc
+
+! OCEAN  (ROMS climatology T/S/U/V + MOCK Fremantle 1992 tide CSV for WL)
+include == ../../model_components/includes/bc/3_ocean/obc_hd_19920222_19920531_6OBC_climatology.fvc   ! ITER9: poly-6 K=0.5 + salinity +0.3 (March, month-windowed); NaN-safe rebuild (fixes -30000 southern fresh)
+
+! SWAN-CANNING & PEEL-HARVEY
+include == ../../model_components/includes/bc/4_sce/sce_WIR_inflows_wq_19700101_19941231.fvc   ! REV: Swan-Canning SAL+TEMP = Narrows monthly clim (data fix); NEUTRAL scale/offset - no 1991 winter-plume cal
+include == ../../model_components/includes/bc/5_phe/phe_WIR_inflows_wq_19890101_19960101.fvc   ! REV: salinity-corrected Peel-Harvey BC
+
+! GROUNDWATER  (PRAMS output into 19 zones — covers 1980+)
+!include == ../../model_components/includes/bc/6_gw/PRAMS/gw_PRAMS_19800101_20241201.fvc   ! ALIGN-1991: groundwater DISABLED to match the 1991 rev config
+
+! STORMWATER  (13 stormwater drains)
+include == ../../model_components/includes/bc/7_sw/sw_MISC_19800101_20241201.fvc   ! REV: D1 Lake Richmond drain (GLM4 1980-2025) enabled; D2-D13 still disabled (no CSV)
+
+
+! ECOSYSTEM MODIFIERS (licensed industry activities — cover 1980+)
+!_________________________________________________________________
+
+!include == ../../model_modifier_library/intakes/modifier-0001a_BP/include_bp_intake_19800101_20241231.fvc       !BP discontinued
+!include == ../../model_modifier_library/discharges/modifier-0001b_BP/include_bp_discharge_19800101_20241231.fvc !BP discontinued
+!include == ../../model_modifier_library/discharges/modifier-0002_WWTP/include_wwtp_discharge_19800101_20241231.fvc
+include == ../../model_modifier_library/discharges/modifier-0003_SDOOL/include_sdool_discharge_19800101_20241231.fvc   ! REV: SDOOL re-enabled for the 1990s (flows as-is, ~171 ML/d total; Woodman Pt dominant ~149)
+!include == ../../model_modifier_library/intakes/modifier-0004a_Verve/include_verve_intake_19800101_20241231.fvc
+!include == ../../model_modifier_library/discharges/modifier-0004b_KPS/include_kps_discharge_19800101_20241231.fvc
+!include == ../../model_modifier_library/discharges/modifier-0005_TiWest/include_tiwest_discharge_19800101_20241231.fvc
+!include == ../../model_modifier_library/intakes/modifier-0006a_PSDP/include_psdp_intake_19800101_20241231.fvc
+!include == ../../model_modifier_library/discharges/modifier-0006b_PSDP/include_psdp_discharge_19800101_20241231.fvc
+
+
+! ECOSYSTEM MODIFIERS (proposed actions)
+!_________________________________________________________________
+!<none>
+
+
+! OUTPUT INSTRUCTIONS
+!_________________________________________________________________
+write check files  == ./check/
+write restart dt   == 480
+logdir             == log
+output dir         == ../../output_archive/1.8.0/1992_marmay/
+include == ../../model_components/includes/output/output_met.fvc
+include == ../../model_components/includes/output/output_hd.fvc
+!include == ../../model_components/includes/output/output_wave.fvc    ! no wave outputs (no wave BC)
+include == ../../model_components/includes/output/output_points_hd.fvc

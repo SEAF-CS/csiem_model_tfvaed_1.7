@@ -1,0 +1,43 @@
+! INCLUDE ------------------------------------------------------------------------------
+!       _____  _____ _____ ______ __  __
+!      / ____|/ ____|_   _|  ____|  \/  |
+!     | |    | (___   | | | |__  | \  / |
+!     | |     \___ \  | | |  __| | |\/| |
+!     | |____ ____) |_| |_| |____| |  | |
+!      \_____|_____/|_____|______|_|  |_|
+!
+!   SCE (Swan-Canning Estuary) inflow BC — SALclim data fix, NEUTRAL (no calibration).
+!
+!   Same as sce_WIR_inflows_wq_19700101_19941231.fvc EXCEPT the river-inflow SAL and TEMP
+!   columns are taken from the *_SALclim.csv files (12-month DEPTH-MEAN Narrows SWANEST
+!   climatology, s6160262 1995-2005), superseding the flat placeholders (NAR 27.16 psu / 21.60 C).
+!   Flow and WQ columns are byte-identical to the original include.
+!     Monthly SAL clim (psu): J32.2 F34.3 M35.8 A35.8 M34.2 J28.9 J22.0 A18.8 S18.1 O21.2 N25.8 D29.3
+!     Monthly TEMP clim (C):  J24.2 F24.2 M22.9 A20.5 M17.9 J15.6 J14.9 A15.4 S16.4 O18.5 N21.1 D23.1
+!
+!   *** NEUTRAL scale/offset ***: flow scale = 1.0 and SAL offset = 0 — i.e. NO 1991-winter-plume
+!   calibration. (The sibling sce_..._SALclim.fvc applies NAR flow x1.5 / CAN x2.0 and SAL -5 psu,
+!   tuned to the Aug-1991 plume; those are inappropriate for other windows.) Use THIS variant for an
+!   un-calibrated baseline, e.g. 1992 Mar-May, where the summer/autumn estuary is naturally ~34-36 psu.
+!   CAN uses the same Narrows climatology (Canning flow ~2.5% of Swan; second-order).
+!
+! ADD RIVER FLOW: ----------------------------------------------------------------------
+
+!# WATER QUALITY AED CONFIG (CSIEM1.7 version) : 18 AED VARIABLES
+!# Columns in CSV file are: Date,Flow,SAL,TEMP,TSS,OXY,SIL,AMM,NIT,FRP,DOC_T,POC_T,DON_T,PON_T,OP,CHLA,TN,TP,ONES,ZEROS
+
+!# SWAN RIVER BOUNDARY @ NARROWS
+!#
+bc == Q, 2, $ENV_REPO/4_sce/CSV/NAR_Inflow_19700101_19941231_SALclim.csv
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
+ bc scale  ==        1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end BC
+
+!# CANNING RIVER BOUNDARY @ CANNING BRIDGE
+!#
+bc== QC, 115.8511, -32.0058, $ENV_REPO/4_sce/CSV/CAN_Inflow_19700101_19941231_SALclim.csv
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
+ bc scale  ==        1,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end BC

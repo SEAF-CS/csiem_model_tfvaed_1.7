@@ -1,0 +1,25 @@
+! INCLUDE ------------------------------------------------------------------------------
+!   PEEL-HARVEY inflow BC — SALINITY-CORRECTED variant for the 1990s (pre-Dawesville-Cut)
+!   Salinity replaced by water-year offsets (-1.5/-2.0/-1.5/0 for 1990/91..1993/94) with
+!   1992 floored to the smoothed in-estuary observations (sites #2/#4/#7); Flow/TEMP/WQ
+!   unchanged. CSV spans 1989-01-01..1996-01-01 only. See climatology_assessment/diagnostics.
+!   Original (uncorrected) include: phe_WIR_inflows_wq.fvc
+!
+!   INFLOW LOCATION: routed through the MANDURAH CHANNEL (115.7107,-32.5180), the natural
+!   pre-Dawesville-Cut ocean entrance of the Peel-Harvey estuary. The Dawesville Cut
+!   (115.6287,-32.5980, opened Apr-1994) used by the original include did NOT exist in the
+!   1990s pre-Cut period, so the full estuary exchange must enter via Mandurah Channel here.
+!
+! ADD RIVER FLOW: ----------------------------------------------------------------------
+
+!# WATER QUALITY AED CONFIG (CSIEM1.7 version) : 18 AED VARIABLES
+!# Headers in file: Date,Flow,SAL,TEMP,TSS,OXY,AMM,NIT,FRP,DOC_T,POC_T,DON_T,PON_T,OP,CHLA,TN,TP,ONES,ZEROS
+
+!# PEEL-HARVEY RIVER BOUNDARY : salinity-corrected (see header)
+!#
+bc == QC, 115.7107, -32.5180, $ENV_REPO/5_phe/CSV/PeelHarvey_Inflow_SALcorr_1989_1996.csv   ! Mandurah Channel (pre-Cut entrance); moved from Dawesville Cut 115.6287,-32.5980
+ bc header == Date,Flow,SAL,TEMP,ZEROS,TSS,TSS,OXY,AMM,NIT,FRP,FRP,DOC_T,POC_T,DON_T,PON_T,OP,OP,CHLA,CHLA,CHLA,CHLA
+ bc scale  ==        1.5,1,1,1,0.9,0.1,1,1,1,0.8,0.2,1,1,1,1,0.5,0.5,1,1,1,1
+ bc offset ==        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+end BC
+

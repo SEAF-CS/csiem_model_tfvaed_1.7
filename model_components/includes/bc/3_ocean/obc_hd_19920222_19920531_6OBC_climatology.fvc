@@ -1,0 +1,77 @@
+! INCLUDE -------------------------------------------------------------------
+! CSIEM Mar-May 1992 run — Ocean BC   (ITER10)
+! (run window 22/02/1992 -> 31/05/1992)
+!
+! Ocean physics: ROMS-DERIVED CLIMATOLOGY (HYCOM starts 2 Oct 1992; not used here)
+!   - T, S, u, v from the 23-year ROMS-derived climatology (perpetual cycle)
+!   - *** POLY-6 SALINITY (_S6corr_M6corr.nc, NaN-safe v3 rebuild from RAW) ***:
+!     seasonal anomaly damped k=0.5 about the annual mean (summer over-salting). Only poly 6.
+!     ITER10: the ITER9 +0.30 psu MARCH bump is REMOVED (dS 0.30 -> 0). It over-salted the
+!     domain (S -0.37->+0.06 ok, but SW/CS/OA/NW went +0.28..+0.50): the -30000 REPAIR below
+!     alone lifts the south, so the extra bump was excessive. Now = clean NaN-safe K=0.5.
+!     NOTE: this rebuild REPAIRS the old missing-cell bug (v1 wrote 256k land/deep cells as
+!     -30000 -> TUFLOW read them as data -> spurious southern fresh water); now proper NaN.
+!   - surf_el IS included (OBC_GRID sub-type 6 requires the fixed 6-var pattern
+!     TIME, SSH, U, V, SALINITY, TEMPERATURE) but is ZEROED in the NetCDF, so it
+!     contributes 0 SSH. The MOCK tide BC provides total WL (no double-counting).
+!
+! Tide: MOCK from Fremantle DOT FFFBH01 gauge — CSV form (Date, water_level)
+!   - Pure broadcast (single gauge), applied to all 6 nodestrings via 6 WL blocks.
+!   - Single continuous 1990-11-01 -> 1994-12-31 file (no year-boundary gaps).
+!
+! BC nodestrings: 1, 12, 13, 14, 15, 16  (the 6OBC layout)
+!
+! TIME HANDLING:
+!   - Climatology NetCDF: `time` var is already AWST -> bc reference time 00:00
+!   - MOCK tide CSV:      Date column is absolute AWST datetime -> no ref time needed
+
+! ============================ OCEAN T/S/U/V (climatology) =====================
+
+grid definition file == $ENV_REPO/3_ocean/CLIMATOLOGY/ROMS_UTC+8_19911001_19921231_climatology_S6corr_M6corr.nc
+  grid definition variables == lon, lat, depth
+  vertical coordinate type == depth
+  grid definition label == clim92
+  boundary grid map == 1
+end grid
+
+bc == OBC_GRID, clim92, $ENV_REPO/3_ocean/CLIMATOLOGY/ROMS_UTC+8_19911001_19921231_climatology_S6corr_M6corr.nc
+  sub-type == 6
+  bc header == time, surf_el, water_u, water_v, salinity, water_temp
+  bc nodestrings == 1, 12, 13, 14, 15, 16
+  bc update dt == 86400.
+  bc time units == hours
+  bc reference time == 01/01/1990 00:00   ! AWST (climatology `time` is already AWST per file attrs)
+  bc default == 0.0, 0.0, 0.0, 35.0, 20.0   ! SSH, U, V, SALINITY, TEMPERATURE
+end bc
+
+! ============================ TIDE (MOCK Fremantle, continuous) ===============
+!
+! Single continuous CSV spanning 1990-11-01 -> 1994-12-31 AWST (15-min, no gaps).
+! Built directly from raw DOT FFFBH01 yearly gauge files (concatenated in AWST
+! before mean-removal). Mean removed: 0.6731 m. Pure-broadcast (all 62 nodes
+! identical), so the CSV drops the node dimension.
+
+bc == WL, 1, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 12, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 13, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 14, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 15, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
+bc == WL, 16, $ENV_REPO/3_ocean/TIDE/tide_MOCK_FRE_19901101_19941231.csv
+  bc header == Date, water_level
+  bc default == 0.0
+end bc
