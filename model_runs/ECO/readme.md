@@ -1,4 +1,5 @@
-## Cockburn Sound model : boundary condition includes files
+## Cockburn Sound model : ECO model run configuration files
 
 <br>
-Configuration instructions for industrial discharges of TUFLOW-FV simulation
+Control files for full ecosystem (TUFLOW-FV + AED nutrients/plankton/benthos)
+simulations on the A002 and B010 meshes.

@@ -1,6 +1,22 @@
 .DS_Store
+Thumbs.db
+*.bak
+~$*
+
+# run-time products (never tracked)
+model_runs/HD/log/
+model_runs/HD/check/
 model_runs/WQ/log/
 model_runs/WQ/check/
 model_runs/ECO/log/
 model_runs/ECO/check/
+model_runs/ST/log/
+model_runs/ST/check/
+model_runs/*/*.log
+output_archive/
+
+# large forcing store lives outside git (Pawsey S3 bc_repo / $ENV_REPO)
 model_components/environment_repo/
+
+# local working notes (not for the public repo)
+CLAUDE.md
